@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:53 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/20 16:10:41 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:07:39 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ static void fixedUpdate(t_cub3d *f, clock_t currentTime)
 }
 static void Update(t_cub3d *f, clock_t currentTime)
 {
-    double fps = (double)f->fps_counter / f->elapsedTime;
-    // printf("FPS: %.2f, %d \n", fps, (int)(fps));
+    double  fps;
+    
+    fps = (double)f->fps_counter / f->elapsedTime;
     f->fps_v = (int)(fps);
     f->fps_counter = 0;
     f->lastTime = currentTime;

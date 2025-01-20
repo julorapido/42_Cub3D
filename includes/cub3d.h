@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/20 16:46:11 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:03:24 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ int		init_windows(t_cub3d *t);
 void    init_ray_loop(t_cub3d *f);
 void    throw_ray_loop(t_cub3d *f, float a);
 double  terner(t_cub3d *f);
+void    strafe(t_cub3d *f, float rot);
 
 // map
 int		position_to_map_tiles(int px, int py, t_cub3d *f);
