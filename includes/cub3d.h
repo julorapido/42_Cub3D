@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/20 17:03:24 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:57:13 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,8 @@ struct s_cub3d
 	float 		px;
     t_image 	*i;
 	float 		py;
+	bool		ht;
+	int			ll;
     float 		v_py;
     float 		v_px;
 	int			fps_v;
