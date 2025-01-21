@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/20 17:07:17 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:27:33 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,12 @@ void	draw_rect(t_window *w, int x0, int y0, int x1, int y1, int color)
 void draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a)
 {
 	float wall_height = (float)(HEIGHT) / (float)dist_to_wall;
+	float ratio;
 
-	wall_height *= (float)(HEIGHT * (f->map->height *  (0.0025) ));
+	ratio = 0.001;
+	if(f->map->height <= 10)
+		ratio = 0.0025;
+	wall_height *= (float)(HEIGHT * (f->map->height *  (ratio) ));
 	for(int y = 0; y < HEIGHT; y ++)
 	{
 		if(y <= (HEIGHT / 2) - (wall_height / (2))) // sky
@@ -94,7 +98,7 @@ void draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x,
 	}
 }
 
-void draw_sprite(t_image *i, float dst_to_sprite, float sprite_y, float sprite_x, t_cub3d *f, float size_factor)
+void draw_sprite(t_image *i, float dst_to_sprite, float sprite_y, float sprite_x, t_cub3d *f, float size_factor, int type)
 {
 	int real_y = 0;
     int aax = 0;
@@ -126,7 +130,7 @@ void draw_sprite(t_image *i, float dst_to_sprite, float sprite_y, float sprite_x
 			int offset_y = (i->height / (dst_to_sprite / 100));
 			if(get_texture_color(f, (int)(x), (int)(y), i) != -16777216)
 			{
-				set_pixel_color(f->fps, (hitler) + (real_x) - (offset / 3),  (HEIGHT /2) + real_y - (offset_y / 3),
+				set_pixel_color(f->fps, (hitler) + (real_x) + (-offset / 3),  (HEIGHT /2) + real_y - (offset_y / (type == 1 ? 1 : 3)),
 					get_texture_color(f, (int)(x), (int)(y), i)
 				);
 			}

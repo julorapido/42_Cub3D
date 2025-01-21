@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/20 17:24:04 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:52:32 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	render_gun(t_cub3d *f)
 					f->gun[(f->gun_i)]) != -16777216)
 			{
 				set_pixel_color(f->fps,
-					(WIDTH / 2) - ((128 / 2) * F_) + x,
+					(WIDTH / 2) - ((128 / 2) * F_) + x + (int)(f->bob_left),
 					(HEIGHT - (y - (4 * F_))),
 					get_texture_color(f, (x / F_),
 						(128 - (y / F_)), f->gun[f->gun_i])
@@ -126,6 +126,7 @@ int	open_hook(int k_code, t_cub3d *f)
 	{
 		return (0);
 	}
+	printf("k_code: %d \n", k_code);
 	if (k_code == 119)
 		f->z = true;
 	if (k_code == 115)
@@ -164,12 +165,28 @@ int	hook_mousedown(int k_code, long x, long y, t_cub3d *f)
 int	keyboard(t_cub3d *f)
 {
 	if (f->k_code == -1)
-	{
 		return (0);
-	}
 	if (f->k_code == K_ESC)
-	{
 		exit(0);
+	if (f->z)
+		strafe(f, 0);
+	if (f->s)
+		strafe(f, 180);
+	if (f->q)
+		strafe(f, 90);
+	if (f->d)
+		strafe(f, -90);
+	if (f->a)
+	{
+		if (fabs(f->player->rot) < 30)
+			f->bob_left -= 5.0;
+		f->player->rot += 4;
+	}
+	if (f->e)
+	{
+		if (fabs(f->player->rot) < 30)
+			f->bob_left += 5.0;
+		f->player->rot -= 4;
 	}
 	return (0);
 }

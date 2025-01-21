@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:06:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/20 17:40:23 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:30:14 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	init_windows(t_cub3d *t)
 void	render(t_cub3d *f)
 {
 	raycasting(f);
+	check_entities(f);
+	render_entities(f);
 	draw_walls(f);
 	draw_entities(f);
 	render_gun(f);
