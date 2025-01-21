@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:38:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/21 13:58:24 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:09:35 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_ray_loop(t_cub3d *f)
 	f->i = f->wall_textures[0];
 }
 
-void	sthrow_ray_loop(t_cub3d *f, float a)
+void	throw_ray_loop(t_cub3d *f, float a)
 {
 	int	k;
 

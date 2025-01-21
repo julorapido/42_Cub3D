@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/21 13:28:23 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:24:04 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	check_entities(t_cub3d *f)
 	float	a;
 
 	a = 0.001;
-	for(int i = 0; i < f->entities_n; i++)
+	for (int i = 0; i < f->entities_n; i++)
 		f->game_entities[i].seen = false;
 	while (a < FOV)
 	{
@@ -137,7 +137,7 @@ void	render_entities(t_cub3d *f)
 			{
 				draw_sprite(f->game_entities[l].sprite, dst,
 					f->game_entities[l].y, f->game_entities[l].x,
-					f, f->game_entities[l].type == 1 ? 0.4 : 1,
+					f, f->game_entities[l].type == 1 ? 0.4 : 1.2,
 						f->game_entities[l].type
 					);
 			}
