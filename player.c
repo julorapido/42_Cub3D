@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/21 13:52:32 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:06:05 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	render_gun(t_cub3d *f)
 					f->gun[(f->gun_i)]) != -16777216)
 			{
 				set_pixel_color(f->fps,
-					(WIDTH / 2) - ((128 / 2) * F_) + x + (int)(f->bob_left),
+					(WIDTH / 2) - ((128 / 2) * F_) + x,
 					(HEIGHT - (y - (4 * F_))),
 					get_texture_color(f, (x / F_),
 						(128 - (y / F_)), f->gun[f->gun_i])
@@ -178,14 +178,10 @@ int	keyboard(t_cub3d *f)
 		strafe(f, -90);
 	if (f->a)
 	{
-		if (fabs(f->player->rot) < 30)
-			f->bob_left -= 5.0;
 		f->player->rot += 4;
 	}
 	if (f->e)
 	{
-		if (fabs(f->player->rot) < 30)
-			f->bob_left += 5.0;
 		f->player->rot -= 4;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:53 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/21 13:48:35 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:03:24 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	render_next_frame(t_cub3d *f)
     f->elapsedTime = (double)(currentTime - f->lastTime) / CLOCKS_PER_SEC;
     f->elapsedFixedTime = (double)(currentTime - f->lastFixedTime) / CLOCKS_PER_SEC;
     // fixedupdate
-    if(f->elapsedFixedTime >= 0.005)
+    if(f->elapsedFixedTime >= 0.008)
     {
         fixedUpdate(f, currentTime);
     }

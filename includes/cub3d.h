@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/21 14:34:28 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:29:51 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # include <dirent.h>
 
 /*  Window Settings	*/
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 700
+# define HEIGHT 700
 # define FOV 60
 # define F_ 3
 # define TEXTURE_HEIGHT 64
@@ -56,6 +56,7 @@
 #define M_PI       3.14159265358979323846
 #define degreesToRadians(a) (a * M_PI / 180.0)
 #define radiansToDegrees(a) (a * 180.0 / M_PI)
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 typedef struct s_cub3d	t_cub3d;
