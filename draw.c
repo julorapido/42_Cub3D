@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 13:38:45 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:47:37 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,18 +103,21 @@ static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 	}
 }
 
+
 void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a)
 {
-	float	wall_height;
+	float	wall_height = (float)(HEIGHT) / (float)dist_to_wall;
 	float	ratio;
 	int		y_y;
 	int		texture_y;
+	int		y;
 
 	ratio = 0.00125;
 	if (f->map->height <= 10)
 		ratio = 0.0025;
 	wall_height *= (float)(HEIGHT * (f->map->height * ratio));
-	for (int y = 0; y < HEIGHT; y ++)
+	y = 0;
+	while(y < HEIGHT; y ++)
 	{
 		if (y <= (HEIGHT / 2) - (wall_height / (2)))
 			set_pixel_color(w, x, y, 0xDDDDDD);
@@ -123,9 +126,10 @@ void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x,
 		else
 		{
 			y_y = y - ((HEIGHT / 2) - (wall_height / 2));
-			texture_y = ((float)(y_y) / (float)((wall_height))) * TEXTURE_HEIGHT;
+			texture_y= ((float)(y_y) / (float)((wall_height))) * TEXTURE_HEIGHT;
 			set_pixel_color(w, x, y, fog_color(get_texture_color(f, texture_x, texture_y, texture), dist_to_wall));
 		}
+		y++;
 	}
 }
 
