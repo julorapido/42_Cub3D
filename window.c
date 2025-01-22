@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:06:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 16:11:09 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:35:11 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	fog_color(int color, float dist_to_wall)
 	blue = MIN(255, blue + ((float)(255 - blue) *factor));
 	return ((red << 16) | (green << 8) | blue);
 }
+
 unsigned int	get_texture_color(t_cub3d *f, int x, int y, t_image *texture)
 {
 	t_image	*i;

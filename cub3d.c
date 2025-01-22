@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:53 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 15:14:02 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:11:52 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	bullet_collisions(t_cub3d *f, int l)
 	}
 }
 
-static void	fixedUpdate(t_cub3d *f, clock_t currentTime)
+static void	fixedupdate(t_cub3d *f, clock_t current_time)
 {
 	int	l;
 
@@ -59,16 +59,16 @@ static void	fixedUpdate(t_cub3d *f, clock_t currentTime)
 		}
 		l++;
 	}
-	f->lastFixedTime = currentTime;
+	f->lastFixedTime = current_time;
 }
-static void	Update(t_cub3d *f, clock_t currentTime)
+static void	update(t_cub3d *f, clock_t current_time)
 {
 	double	fps;
 	
 	fps = (double)f->fps_counter / f->elapsedTime;
 	f->fps_v = (int)(fps);
 	f->fps_counter = 0;
-	f->lastTime = currentTime;
+	f->lastTime = current_time;
 	for (int m = 0; m < f->entities_n; m ++)
 	{
 		if (f->game_entities[m].type == 1)
@@ -91,23 +91,23 @@ static void	Update(t_cub3d *f, clock_t currentTime)
 
 int	render_next_frame(t_cub3d *f)
 {
-	clock_t	currentTime;
+	clock_t	current_time;
 	char	a[40];
 
-	currentTime = clock();
+	current_time = clock();
 	keyboard(f);
 	render(f);
 	f->fps_counter++;
-	f->elapsedTime = (double)(currentTime - f->lastTime) / CLOCKS_PER_SEC;
-	f->elapsedFixedTime = (double)(currentTime - f->lastFixedTime) / CLOCKS_PER_SEC;
+	f->elapsedTime = (double)(current_time - f->lastTime) / CLOCKS_PER_SEC;
+	f->elapsedFixedTime = (double)(current_time - f->lastFixedTime) / CLOCKS_PER_SEC;
 	// fixedupdate
 	if (f->elapsedFixedTime >= 0.008)
 	{
-		fixedUpdate(f, currentTime);
+		fixedupdate(f, current_time);
 	}
 	if (f->elapsedTime >= 0.12)
 	{
-		Update(f, currentTime);
+		update(f, current_time);
 	}
 	sprintf(a, "%d", (int)(f->fps_v));
 	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2, 30, 0xFFFFFF, "CUB3D");

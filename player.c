@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 16:22:50 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:47:36 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	raycasting(t_cub3d *f)
 				% (HEIGHT / f->map->height)) / (HEIGHT / f->map->height);
 		aff(f->px, f->py, f);
 		draw_fps_ray(x,
-				(f->dst_to_wall * cos(degreesToRadians(f->beta))) * 0.5,
-				f, f->i, degreesToRadians(f->player->rot + a)
+			(f->dst_to_wall * cos(degreesToRadians(f->beta))) * 0.5,
+			f, f->i, degreesToRadians(f->player->rot + a)
 			);
 		x--;
 		a += (float)(FOV) / (float)(WIDTH);

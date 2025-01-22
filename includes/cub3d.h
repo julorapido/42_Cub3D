@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 16:22:36 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:09:40 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,12 +201,16 @@ struct s_cub3d
 	float 		px;
     t_image 	*i;
 	float 		py;
-	int			sprite_x;
-	int			sprite_y;
+	float			sprite_x;
+	float			sprite_y;
 	bool		ht;
 	int			ll;
 	int			sy;
+	float		pxx;
+	float		pyy;
+	float		sz;
 	int			sx;
+	int		y_y;
     float 		v_py;
     float 		v_px;
 	int		real_y;
@@ -265,7 +269,7 @@ void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
 // void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
 void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
 // void	draw_rect(t_window *f, int x0, int y0, int x1, int y1, int color);
-void	draw_sprite(t_image *i, float dst_to_sprite, t_cub3d *f, float size_factor, int type);
+void	draw_sprite(t_image *i, float dst_to_sprite, t_cub3d *f, float sz);
 //void	draw_fps_texturedray(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a);
 void	draw_fps_ray(int x, float dist_to_wall, t_cub3d *f, t_image *texture, float a);
 int		fog_color(int color, float dist_to_wall);
