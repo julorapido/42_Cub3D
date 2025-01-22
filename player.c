@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 12:06:05 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:05:37 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ int	keyboard(t_cub3d *f)
 	}
 	if (f->e)
 	{
+
 		f->player->rot -= 4;
 	}
 	return (0);

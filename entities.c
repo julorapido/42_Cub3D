@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 12:47:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:34:23 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	aa(int ll, int px, int py, t_cub3d *f)
 {
 	if (ll != -1)
 	{
-		draw_line(f->fps,
+		draw_line(f,
 			f->player->x / MINIMAP_RATIO, f->player->y / MINIMAP_RATIO,
 			px / MINIMAP_RATIO, py / MINIMAP_RATIO,
 			0xFFF000
@@ -57,7 +57,7 @@ static int	aa(int ll, int px, int py, t_cub3d *f)
 	}
 	else
 	{
-		draw_line(f->fps,
+		draw_line(f,
 			f->player->x / MINIMAP_RATIO, f->player->y / MINIMAP_RATIO,
 			px / MINIMAP_RATIO, py / MINIMAP_RATIO,
 			0xFF00FF
@@ -135,7 +135,7 @@ void	render_entities(t_cub3d *f)
 							- (float)(f->player->x), 2)
 						+ pow((float)(f->game_entities[l].y)
 							- (float)(f->player->y), 2)));
-			if (dst > 3.0)
+			if (dst > 20.0)
 			{
 				draw_sprite(f->game_entities[l].sprite, dst,
 					f->game_entities[l].y, f->game_entities[l].x,

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:06:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/20 17:32:37 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:42:14 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	draw_player(t_cub3d *f)
 {
-	draw_rect(f->fps,
+	draw_rect(f,
 		(f->player)->x / MINIMAP_RATIO,
 		(f->player)->y / MINIMAP_RATIO,
 		((f->player)->x / MINIMAP_RATIO) + 4,
@@ -35,7 +35,7 @@ void	draw_walls(t_cub3d *f)
 		{
 			if ((f->map)->map_matrix[y][x] == '1')
 			{
-				draw_rect(f->fps,
+				draw_rect(f,
 					(x * (WIDTH / (f->map)->width)) / MINIMAP_RATIO,
 					(y * (HEIGHT / (f->map)->height)) / MINIMAP_RATIO,
 					(((x + 1) * (WIDTH / (f->map)->width))) / MINIMAP_RATIO,
@@ -69,7 +69,7 @@ void	draw_entities(t_cub3d *f)
 		}
 		else
 			color = 0xFFFF00;
-		draw_rect(f->fps, (int)((e)->x) / MINIMAP_RATIO,
+		draw_rect(f, (int)((e)->x) / MINIMAP_RATIO,
 			(int)((e)->y) / MINIMAP_RATIO,
 			((int)((e)->x) / MINIMAP_RATIO) + sz,
 			((int)((e)->y) / MINIMAP_RATIO) + sz, color);

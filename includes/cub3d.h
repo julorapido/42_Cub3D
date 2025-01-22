@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 13:29:51 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:05:25 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,9 +203,12 @@ struct s_cub3d
 	float 		py;
 	bool		ht;
 	int			ll;
-	float		bob_left;
+	int			sy;
+	int			sx;
     float 		v_py;
     float 		v_px;
+	int		real_y;
+	int		real_x;
 	int			fps_v;
 	bool		shooting;
 	double		elapsedTime;
@@ -253,8 +256,11 @@ void 	draw_walls(t_cub3d *f);
 // draw
 void	set_pixel_color(t_window *w, long x, long y, unsigned int n);
 unsigned int	get_texture_color(t_cub3d *f, int x, int y, t_image *t);
-void	draw_line(t_window *w, int x0, int y0, int x1, int y1, int color);
-void	draw_rect(t_window *w, int x0, int y0, int x1, int y1, int color);
+//void	draw_line(t_window *w, int x0, int y0, int x1, int y1, int color);
+void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
+// void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
+void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
+// void	draw_rect(t_window *f, int x0, int y0, int x1, int y1, int color);
 void	draw_sprite(t_image *i, float dst_to_sprite, float sprite_y, float sprite_x, t_cub3d *f, float size_factor, int type);
 void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a);
 void	shoot(t_cub3d *f);
