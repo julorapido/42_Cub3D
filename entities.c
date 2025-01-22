@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 14:34:23 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:34:48 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ void	init_entities(t_cub3d *f)
 	f->game_entities = calloc(100, sizeof(t_entity));
 	f->game_entities[0].x = WIDTH / 2;
 	f->game_entities[0].y = HEIGHT / 2;
-	// f->game_entities[0].sprite = f->sprites[0];
 	f->game_entities[0].destroyed = false;
 	f->game_entities[0].seen = false;
 	f->game_entities[0].type = 1;
 	f->game_entities[1].x = WIDTH / 4;
 	f->game_entities[1].y = HEIGHT / 3;
-	// f->game_entities[1].sprite = f->sprites[0];
 	f->game_entities[1].destroyed = false;
 	f->game_entities[1].seen = false;
 	f->game_entities[1].type = 1;
@@ -43,26 +41,6 @@ void	init_projectile(t_cub3d *f, int x, int y, float dir)
 	f->game_entities[n].y = y;
 	f->game_entities[n].sprite = f->sprites[1];
 	f->entities_n++;
-}
-
-static int	aa(int ll, int px, int py, t_cub3d *f)
-{
-	if (ll != -1)
-	{
-		draw_line(f,
-			f->player->x / MINIMAP_RATIO, f->player->y / MINIMAP_RATIO,
-			px / MINIMAP_RATIO, py / MINIMAP_RATIO,
-			0xFFF000
-			);
-	}
-	else
-	{
-		draw_line(f,
-			f->player->x / MINIMAP_RATIO, f->player->y / MINIMAP_RATIO,
-			px / MINIMAP_RATIO, py / MINIMAP_RATIO,
-			0xFF00FF
-			);
-	}
 }
 
 static void	wawer(t_cub3d *f, int px, int py)
@@ -98,8 +76,7 @@ void	check_entities(t_cub3d *f)
 	float	a;
 
 	a = 0.001;
-	for (int i = 0; i < f->entities_n; i++)
-		f->game_entities[i].seen = false;
+	reset_entities(f);
 	while (a < FOV)
 	{
 		f->ht = false;
@@ -108,9 +85,8 @@ void	check_entities(t_cub3d *f)
 		f->ll = -1;
 		while (1)
 		{
-			if ((int)(px) > WIDTH || (int)(py) > HEIGHT || position_to_map_tiles((px), (py), f) == 1 
-				|| position_to_map_tiles((px + 1), (py + 1), f) == 1 || position_to_map_tiles((px - 1), (py - 1), f) == 1 
-				|| position_to_map_tiles((px-1), py + 1, f) == 1 || position_to_map_tiles((px + 1), (py - 1), f) == 1 )
+			if ((int)(px) > WIDTH || (int)(py) > HEIGHT
+				|| position_to_map_tiles((px), (py), f) == 1)
 				break ;
 			px += (cos(degreesToRadians(((a - f->player->rot) - 60))));
 			py += (sin(degreesToRadians(((a - f->player->rot) - 60))));
@@ -139,8 +115,8 @@ void	render_entities(t_cub3d *f)
 			{
 				draw_sprite(f->game_entities[l].sprite, dst,
 					f->game_entities[l].y, f->game_entities[l].x,
-					f, f->game_entities[l].type == 1 ? 0.4 : 1.2,
-						f->game_entities[l].type
+					f, ENTITY_SZ(f->game_entities[l].type),
+					f->game_entities[l].type
 					);
 			}
 		}

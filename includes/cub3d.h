@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 15:05:25 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:40:48 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 #define degreesToRadians(a) (a * M_PI / 180.0)
 #define radiansToDegrees(a) (a * 180.0 / M_PI)
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define ENTITY_SZ(a) ((a == 1) ? (0.4) : (1.2)) 
 
 typedef struct s_cub3d	t_cub3d;
 
@@ -225,6 +225,8 @@ void    init_ray_loop(t_cub3d *f);
 void    throw_ray_loop(t_cub3d *f, float a);
 double  terner(t_cub3d *f);
 void    strafe(t_cub3d *f, float rot);
+int		aa(int ll, int px, int py, t_cub3d *f);
+void    reset_entities(t_cub3d *f);
 
 // map
 int		position_to_map_tiles(int px, int py, t_cub3d *f);
@@ -262,7 +264,7 @@ void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
 void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
 // void	draw_rect(t_window *f, int x0, int y0, int x1, int y1, int color);
 void	draw_sprite(t_image *i, float dst_to_sprite, float sprite_y, float sprite_x, t_cub3d *f, float size_factor, int type);
-void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a);
+void	draw_fps_texturedray(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a);
 void	shoot(t_cub3d *f);
 
 // keyboard

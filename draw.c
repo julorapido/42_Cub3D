@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 14:43:18 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:40:34 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 		{
 			if (px < 0.0 || (int)(px) > WIDTH || (int)(py) > HEIGHT || py < 0.0)
 				break ;
-			if ((px < sprite_x + 2 && px > sprite_x - 2) && (py < sprite_y + 2 && py > sprite_y - 2))
+			if ((px < sprite_x + 2 && px > sprite_x - 2)
+				&& (py < sprite_y + 2 && py > sprite_y - 2))
 			{
 				(*hitler) = aax;
 				break ;
@@ -101,9 +102,9 @@ static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 	}
 }
 
-void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a)
+void	draw_fps_texturedray(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a)
 {
-	float	wall_height = (float)(HEIGHT) / (float)dist_to_wall;
+	float	wall_height;
 	float	ratio;
 	int		y_y;
 	int		texture_y;
@@ -120,12 +121,15 @@ void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x,
 		if (y <= (HEIGHT / 2) - (wall_height / (2)))
 			set_pixel_color(w, x, y, 0xDDDDDD);
 		else if (y >= (HEIGHT / 2) + (wall_height / (2)))
-			set_pixel_color(w, x, y, get_texture_color(f, 0, 0, f->wall_textures[0]));
+			set_pixel_color(w, x, y, 
+				get_texture_color(f, 0, 0, f->wall_textures[0]));
 		else
 		{
 			y_y = y - ((HEIGHT / 2) - (wall_height / 2));
-			texture_y = ((float)(y_y) / (float)((wall_height))) * TEXTURE_HEIGHT;
-			set_pixel_color(w, x, y, fog_color(get_texture_color(f, texture_x, texture_y, texture), dist_to_wall));
+			texture_y = ((float)(y_y) / (float)((wall_height)))
+				* TEXTURE_HEIGHT;
+			set_pixel_color(w, x, y,
+				fog_color(get_texture_color(f, texture_x, texture_y, texture), dist_to_wall));
 		}
 		y++;
 	}

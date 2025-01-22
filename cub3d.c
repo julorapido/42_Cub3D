@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:53 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 15:08:09 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:14:02 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	bullet_collisions(t_cub3d *f, int l)
 			}
 		}
 		m++;
-	} 
+	}
 }
 
 static void	fixedUpdate(t_cub3d *f, clock_t currentTime)
@@ -61,9 +61,9 @@ static void	fixedUpdate(t_cub3d *f, clock_t currentTime)
 	}
 	f->lastFixedTime = currentTime;
 }
-static void Update(t_cub3d *f, clock_t currentTime)
+static void	Update(t_cub3d *f, clock_t currentTime)
 {
-	double  fps;
+	double	fps;
 	
 	fps = (double)f->fps_counter / f->elapsedTime;
 	f->fps_v = (int)(fps);
@@ -92,7 +92,8 @@ static void Update(t_cub3d *f, clock_t currentTime)
 int	render_next_frame(t_cub3d *f)
 {
 	clock_t	currentTime;
-	
+	char	a[40];
+
 	currentTime = clock();
 	keyboard(f);
 	render(f);
@@ -100,7 +101,7 @@ int	render_next_frame(t_cub3d *f)
 	f->elapsedTime = (double)(currentTime - f->lastTime) / CLOCKS_PER_SEC;
 	f->elapsedFixedTime = (double)(currentTime - f->lastFixedTime) / CLOCKS_PER_SEC;
 	// fixedupdate
-	if(f->elapsedFixedTime >= 0.008)
+	if (f->elapsedFixedTime >= 0.008)
 	{
 		fixedUpdate(f, currentTime);
 	}
@@ -108,12 +109,11 @@ int	render_next_frame(t_cub3d *f)
 	{
 		Update(f, currentTime);
 	}
-	char a [40];
-	sprintf(a,"%d",(int)(f->fps_v));
-	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH/2, 30, 0xFFFFFF, "CUB3D");
-	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH/2, 45, 0xFFFFFF, a);
-	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH/2 + 15, 45, 0xFFFFFF, "FPS");
-	return(0);
+	sprintf(a, "%d", (int)(f->fps_v));
+	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2, 30, 0xFFFFFF, "CUB3D");
+	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2, 45, 0xFFFFFF, a);
+	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2 + 15, 45, 0xFFFFFF, "FPS");
+	return (0);
 }
 
 const char *a[4] = {
@@ -141,9 +141,8 @@ const char *d[5] = {
 };
 
 
-static int load_imgs(t_cub3d *f)
+static int	load_imgs(t_cub3d *f)
 {
-	// walls
 	int	i;
 
 	i = 0;
@@ -153,11 +152,11 @@ static int load_imgs(t_cub3d *f)
 		if (!f->wall_textures[i])
 			return (-1);
 		f->wall_textures[i]->img = mlx_xpm_file_to_image(f->fps->mlx, (char *)(a[i]),
-			&f->wall_textures[i]->width, &f->wall_textures[i]->height);
+				&f->wall_textures[i]->width, &f->wall_textures[i]->height);
 		if (!f->wall_textures[i]->img)
 			return (-1);
 		f->wall_textures[i]->bfr = mlx_get_data_addr(f->wall_textures[i]->img, &f->wall_textures[i]->bpp,
-			&f->wall_textures[i]->linelen, &f->wall_textures[i]->endiant);
+				&f->wall_textures[i]->linelen, &f->wall_textures[i]->endiant);
 		i++;
 	}
 	// sprites
@@ -168,11 +167,11 @@ static int load_imgs(t_cub3d *f)
 		if (!f->sprites[i])
 			return (-2);
 		f->sprites[i]->img = mlx_xpm_file_to_image(f->fps->mlx, (char *)(b[i]),
-			&f->sprites[i]->width, &f->sprites[i]->height);
+				&f->sprites[i]->width, &f->sprites[i]->height);
 		if (!f->sprites[i]->img)
 			return (-2);
 		f->sprites[i]->bfr = mlx_get_data_addr(f->sprites[i]->img, &f->sprites[i]->bpp,
-			&f->sprites[i]->linelen, &f->sprites[i]->endiant);
+				&f->sprites[i]->linelen, &f->sprites[i]->endiant);
 		i++;
 	}
 	i = 0;
@@ -211,8 +210,8 @@ static int load_imgs(t_cub3d *f)
 
 int	main(int argc, char **argv)
 {
-	int			c;
-	t_cub3d     *f;
+	int		c;
+	t_cub3d	*f;
 
 	(void)(argc);
 	(void)(argv);
@@ -224,7 +223,7 @@ int	main(int argc, char **argv)
 	f->lastTime = clock();
 	f->player = malloc(sizeof(t_player));
 	f->last_mouse = -1;
-	if(!f || !(f->player) || !f->map)
+	if (!f || !(f->player) || !f->map)
 		return (EXIT_FAILURE);
 	c = init_windows(f);
 	if (!c)

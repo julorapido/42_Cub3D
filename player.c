@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 15:05:37 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:40:55 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	raycasting(t_cub3d *f)
 		f->texture_y = (TEXTURE_HEIGHT) * ((int)(f->py)
 				% (HEIGHT / f->map->height)) / (HEIGHT / f->map->height);
 		aff(f->px, f->py, f);
-		draw_fps_texturedRay(f->fps, x,
+		draw_fps_texturedray(f->fps, x,
 			(f->dst_to_wall * cos(degreesToRadians(f->beta))) * 0.5,
 			terner(f), f, f->i, degreesToRadians(f->player->rot + a)
 			);
@@ -115,76 +115,10 @@ int	close_hook(int k_code, t_cub3d *f)
 		f->q = false;
 	if (k_code == 100)
 		f->d = false;
-		f->a = false;
-		f->e = false;
-	return (0);
-}
-
-int	open_hook(int k_code, t_cub3d *f)
-{
-	if (f->k_code == -1)
-	{
-		return (0);
-	}
-	printf("k_code: %d \n", k_code);
-	if (k_code == 119)
-		f->z = true;
-	if (k_code == 115)
-		f->s = true;
-	if (k_code == 97)
-		f->q = true;
-	if (k_code == 100)
-		f->d = true;
 	if (k_code == 113)
-		f->a = true;
+		f->a = false;
 	if (k_code == 101)
-		f->e = true;
-	return (0);
-}
-
-int	mouse(int x, int y, t_cub3d *f)
-{
-	if (f->last_mouse < x)
-	{
-		(f->player)->rot -= 1;
-	}
-	else if (f->last_mouse > x)
-	{
-		(f->player)->rot += 1;
-	}
-}
-
-int	hook_mousedown(int k_code, long x, long y, t_cub3d *f)
-{
-	(void)(x);
-	(void)(y);
-	if (k_code == 1)
-		shoot(f);
-}
-
-int	keyboard(t_cub3d *f)
-{
-	if (f->k_code == -1)
-		return (0);
-	if (f->k_code == K_ESC)
-		exit(0);
-	if (f->z)
-		strafe(f, 0);
-	if (f->s)
-		strafe(f, 180);
-	if (f->q)
-		strafe(f, 90);
-	if (f->d)
-		strafe(f, -90);
-	if (f->a)
-	{
-		f->player->rot += 4;
-	}
-	if (f->e)
-	{
-
-		f->player->rot -= 4;
-	}
+		f->e = false;
 	return (0);
 }
 

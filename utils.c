@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:38:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/21 14:09:35 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:18:47 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,17 @@ void	strafe(t_cub3d *f, float rot)
 					cos(degreesToRadians((f->player->rot + FOV / 2 + rot)))));
 		(f->player)->y -= roundf(6 * (
 					sin(degreesToRadians((f->player->rot + FOV / 2 + rot)))));
+	}
+}
+
+int	mouse(int x, int y, t_cub3d *f)
+{
+	if (f->last_mouse < x)
+	{
+		(f->player)->rot -= 1;
+	}
+	else if (f->last_mouse > x)
+	{
+		(f->player)->rot += 1;
 	}
 }
