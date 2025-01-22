@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 13:47:37 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:50:27 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,12 @@ void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x,
 	float	ratio;
 	int		y_y;
 	int		texture_y;
-	int		y;
 
 	ratio = 0.00125;
-	if (f->map->height <= 10)
+	if(f->map->height <= 10)
 		ratio = 0.0025;
 	wall_height *= (float)(HEIGHT * (f->map->height * ratio));
-	y = 0;
-	while(y < HEIGHT; y ++)
+	for (int y = 0; y < HEIGHT; y ++)
 	{
 		if (y <= (HEIGHT / 2) - (wall_height / (2)))
 			set_pixel_color(w, x, y, 0xDDDDDD);
@@ -129,7 +127,6 @@ void	draw_fps_texturedRay(t_window *w, int x, float dist_to_wall, int texture_x,
 			texture_y= ((float)(y_y) / (float)((wall_height))) * TEXTURE_HEIGHT;
 			set_pixel_color(w, x, y, fog_color(get_texture_color(f, texture_x, texture_y, texture), dist_to_wall));
 		}
-		y++;
 	}
 }
 

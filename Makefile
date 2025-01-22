@@ -1,5 +1,5 @@
 NAME = Cub3D
-SRCS_ = *.c ./parser/*.c
+SRCS_ = *.c ./parserr/*.c
 SRCS_OBJ = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -g
