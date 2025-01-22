@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 15:34:48 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:48:55 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,9 @@ void	render_entities(t_cub3d *f)
 							- (float)(f->player->y), 2)));
 			if (dst > 20.0)
 			{
+				f->sprite_y = f->game_entities[l].y;
+				f->sprite_x = f->game_entities[l].x;
 				draw_sprite(f->game_entities[l].sprite, dst,
-					f->game_entities[l].y, f->game_entities[l].x,
 					f, ENTITY_SZ(f->game_entities[l].type),
 					f->game_entities[l].type
 					);

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 15:40:34 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:22:31 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,6 @@ void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color)
 	}
 }
 
-static int	fog_color(int color, float dist_to_wall)
-{
-	int		red;
-	int		green;
-	int		blue;
-	float	factor;
-
-	red = (color >> 16) & 0xFF;
-	green = (color >> 8) & 0xFF;
-	blue = color & 0xFF;
-	factor = dist_to_wall / 500;
-	red = MIN(255, red + ((float)(255 - red) *factor));
-	green = MIN(255, green + ((float)(255 - green) *factor));
-	blue = MIN(255, blue + ((float)(255 - blue) *factor));
-	return ((red << 16) | (green << 8) | blue);
-}
-
 static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 {
 	int		aax;
@@ -102,7 +85,7 @@ static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 	}
 }
 
-void	draw_fps_texturedray(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a)
+void	draw_fps_ray(int x, float ds, t_cub3d *f, t_image *texture, float a)
 {
 	float	wall_height;
 	float	ratio;
@@ -110,7 +93,7 @@ void	draw_fps_texturedray(t_window *w, int x, float dist_to_wall, int texture_x,
 	int		texture_y;
 	int		y;
 
-	wall_height = (float)(HEIGHT) / (float)dist_to_wall;
+	wall_height = (float)(HEIGHT) / (float)ds;
 	ratio = 0.0015;
 	if (f->map->height <= 10)
 		ratio = 0.0025;
@@ -119,23 +102,24 @@ void	draw_fps_texturedray(t_window *w, int x, float dist_to_wall, int texture_x,
 	while (y < HEIGHT)
 	{
 		if (y <= (HEIGHT / 2) - (wall_height / (2)))
-			set_pixel_color(w, x, y, 0xDDDDDD);
+			set_pixel_color(f->fps, x, y, 0xDDDDDD);
 		else if (y >= (HEIGHT / 2) + (wall_height / (2)))
-			set_pixel_color(w, x, y, 
+			set_pixel_color(f->fps, x, y,
 				get_texture_color(f, 0, 0, f->wall_textures[0]));
 		else
 		{
 			y_y = y - ((HEIGHT / 2) - (wall_height / 2));
-			texture_y = ((float)(y_y) / (float)((wall_height)))
+			float atexture_y = ((float)(y_y) / ((wall_height)))
 				* TEXTURE_HEIGHT;
-			set_pixel_color(w, x, y,
-				fog_color(get_texture_color(f, texture_x, texture_y, texture), dist_to_wall));
+			set_pixel_color(f->fps, x, y,
+				fog_color(get_texture_color(f,
+						terner(f), atexture_y, texture), ds));
 		}
 		y++;
 	}
 }
 
-void	draw_sprite(t_image *i, float dst_to_sprite, float sprite_y, float sprite_x, t_cub3d *f, float size_factor, int type)
+void	draw_sprite(t_image *i, float dst_sprite, t_cub3d *f, float sz, int t)
 {
 	int		offset_y;
 	float	x;
@@ -145,26 +129,26 @@ void	draw_sprite(t_image *i, float dst_to_sprite, float sprite_y, float sprite_x
 	y = 0;
 	f->real_y = 0;
 	hitler = -1;
-	sprite_rays(f, sprite_y, sprite_x, &hitler);
+	sprite_rays(f, f->sprite_y, f->sprite_x, &hitler);
 	while (y < i->height)
 	{
 		x = 0;
 		f->real_x = 0;
 		while (x < i->width)
 		{
-			offset_y = (i->height / (dst_to_sprite / 100));
+			offset_y = (i->height / (dst_sprite / 100));
 			if (get_texture_color(f, (int)(x), (int)(y), i) != -16777216)
 			{
 				set_pixel_color(f->fps,
-					(hitler) + (f->real_x), //- (type == 2 ? 0 :(i->width / 2)),
-					(HEIGHT / 2) + f->real_y - (offset_y / (type == 1 ? 1 : 3)),
+					(hitler) + (f->real_x),
+					(HEIGHT / 2) + f->real_y - (offset_y / (t == 1 ? 1 : 3)),
 					get_texture_color(f, (int)(x), (int)(y), i)
 					);
 			}
 			f->real_x++;
-			x += (dst_to_sprite / 100) * size_factor;
+			x += (dst_sprite / 100) * sz;
 		}
 		f->real_y++;
-		y += (dst_to_sprite / 100) * size_factor;
+		y += (dst_sprite / 100) * sz;
 	}
 }

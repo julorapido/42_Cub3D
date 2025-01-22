@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:06:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 14:42:14 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:19:57 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_entities(t_cub3d *f)
 		if (e->type == 2)
 		{
 			color = 0x222222;
-			sz = 3;
+			sz = 2;
 		}
 		else
 			color = 0xFFFF00;
