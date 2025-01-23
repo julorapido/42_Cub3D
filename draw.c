@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:34:20 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:06:04 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,12 @@ void	draw_fps_ray(int x, float ds, t_cub3d *f, t_image *texture)
 	}
 }
 
-void	draw_sprite(t_image *i, float dst_sprite, t_cub3d *f, float sz)
+void	draw_sprite(t_image *i, float d, t_cub3d *f, float sz)
 {
 	f->yy_ = 0;
 	f->real_y = 0;
-	f->hitler = -1;
-	sprite_rays(f, f->sprite_y, f->sprite_x, &f->hitler);
+	f->hitrel = -1;
+	sprite_rays(f, f->sprite_y, f->sprite_x, &f->hitrel);
 	while (f->yy_ < i->height)
 	{
 		f->xx_ = 0;
@@ -124,16 +124,16 @@ void	draw_sprite(t_image *i, float dst_sprite, t_cub3d *f, float sz)
 			if (get_texture_color(f, (int)(f->xx_),
 				(int)(f->yy_), i) != -16777216)
 			{
-				set_pixel_color(f->fps,
-					(f->hitler) + (f->real_x),
-					(HEIGHT / 2) + f->real_y - (i->height / (dst_sprite / 100)),
+				set_pixel_color(f->fps, (f->hitrel) + (f->real_x)
+					- ((i->width / (d / 100)) / s_func(f)),
+					(HEIGHT / 2) + f->real_y - ((i->height / (d / 100)) / s_func(f)),
 					get_texture_color(f, (int)(f->xx_), (int)(f->yy_), i)
 					);
 			}
 			f->real_x++;
-			f->xx_ += (dst_sprite / 100) * sz;
+			f->xx_ += (d / 100) * sz;
 		}
 		f->real_y++;
-		f->yy_ += (dst_sprite / 100) * sz;
+		f->yy_ += (d / 100) * sz;
 	}
 }

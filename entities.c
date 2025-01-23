@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:33:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:53:29 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	render_entities(t_cub3d *f)
 	{
 		if (f->game_entities[l].seen)
 		{
+						f->s_type = f->game_entities[l].type;
 			dst = (sqrt(pow((float)(f->game_entities[l].x)
 							- (float)(f->player->x), 2)
 						+ pow((float)(f->game_entities[l].y)
