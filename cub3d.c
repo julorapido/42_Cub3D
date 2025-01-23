@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:53 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 12:24:03 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:34:05 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	fixedupdate(t_cub3d *f, clock_t current_time)
 		if (f->game_entities[l].type == 2)
 		{
 			f->game_entities[l].x += (12)
-				* (cos(degreesToRadians((f->game_entities[l].dir))));
+				* (cos(degreestoradians((f->game_entities[l].dir))));
 			f->game_entities[l].y -= (12)
-				* (sin(degreesToRadians((f->game_entities[l].dir))));
+				* (sin(degreestoradians((f->game_entities[l].dir))));
 			if (position_to_map_tiles(f->game_entities[l].x,
 					f->game_entities[l].y, f) == 1)
 				f->game_entities[l].destroyed = true;
@@ -38,7 +38,7 @@ static void	fixedupdate(t_cub3d *f, clock_t current_time)
 		}
 		l++;
 	}
-	f->lastFixedTime = current_time;
+	f->lastfixedtime = current_time;
 }
 
 static void	update(t_cub3d *f, clock_t current_time)
@@ -46,9 +46,9 @@ static void	update(t_cub3d *f, clock_t current_time)
 	int	m;
 
 	m = 0;
-	f->fps_v = (int)((double)f->fps_counter / f->elapsedTime);
+	f->fps_v = (int)((double)f->fps_counter / f->elapsedtime);
 	f->fps_counter = 0;
-	f->lastTime = current_time;
+	f->lasttime = current_time;
 	while (m < f->entities_n)
 	{
 		if (f->game_entities[m].type == 1)
@@ -79,12 +79,12 @@ int	render_next_frame(t_cub3d *f)
 	keyboard(f);
 	render(f);
 	f->fps_counter++;
-	f->elapsedTime = (double)(current_time - f->lastTime) / CLOCKS_PER_SEC;
-	f->elapsedFixedTime = (double)(current_time - f->lastFixedTime)
+	f->elapsedtime = (double)(current_time - f->lasttime) / CLOCKS_PER_SEC;
+	f->elapsedfixedtime = (double)(current_time - f->lastfixedtime)
 		/ CLOCKS_PER_SEC;
-	if (f->elapsedFixedTime >= 0.008)
+	if (f->elapsedfixedtime >= 0.008)
 		fixedupdate(f, current_time);
-	if (f->elapsedTime >= 0.12)
+	if (f->elapsedtime >= 0.12)
 		update(f, current_time);
 	sprintf(a, "%d", (int)(f->fps_v));
 	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2, 30, 0xFFFFFF, "CUB3D");

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:19:29 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 11:42:31 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:32:10 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ int	aa(int ll, int px, int py, t_cub3d *f)
 {
 	if (ll != -1)
 	{
+		f->color = 0xFFF000;
 		draw_line(f,
 			f->player->x / MINIMAP_RATIO, f->player->y / MINIMAP_RATIO,
-			px / MINIMAP_RATIO, py / MINIMAP_RATIO,
-			0xFFF000
+			px / MINIMAP_RATIO, py / MINIMAP_RATIO
 			);
 	}
 	else
 	{
+		f->color = 0xFF00FF;
 		draw_line(f,
 			f->player->x / MINIMAP_RATIO, f->player->y / MINIMAP_RATIO,
-			px / MINIMAP_RATIO, py / MINIMAP_RATIO,
-			0xFF00FF
+			px / MINIMAP_RATIO, py / MINIMAP_RATIO
 			);
 	}
 	return (0);

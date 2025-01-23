@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:06:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 11:43:17 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:25:12 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	fog_color(int color, float dist_to_wall)
 	green = (color >> 8) & 0xFF;
 	blue = color & 0xFF;
 	factor = dist_to_wall / 500;
-	red = MIN(255, red + ((float)(255 - red) *factor));
-	green = MIN(255, green + ((float)(255 - green) *factor));
-	blue = MIN(255, blue + ((float)(255 - blue) *factor));
+	red = min(255, red + ((float)(255 - red) *factor));
+	green = min(255, green + ((float)(255 - green) *factor));
+	blue = min(255, blue + ((float)(255 - blue) *factor));
 	return ((red << 16) | (green << 8) | blue);
 }
 

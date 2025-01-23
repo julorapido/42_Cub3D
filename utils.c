@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:38:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 11:43:01 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:34:59 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ void	strafe(t_cub3d *f, float rot)
 {
 	if (position_to_map_tiles(
 			(f->player)->x + 13
-			*(cos(degreesToRadians((f->player->rot + FOV / 2 + (rot))))),
+			*(cos(degreestoradians((f->player->rot + FOV / 2 + (rot))))),
 			(f->player)->y - 13
-			*(sin(degreesToRadians((f->player->rot + FOV / 2 + (rot))))),
+			*(sin(degreestoradians((f->player->rot + FOV / 2 + (rot))))),
 			f) != 1)
 	{
 		(f->player)->x += roundf(6 * (
-					cos(degreesToRadians((f->player->rot + FOV / 2 + rot)))));
+					cos(degreestoradians((f->player->rot + FOV / 2 + rot)))));
 		(f->player)->y -= roundf(6 * (
-					sin(degreesToRadians((f->player->rot + FOV / 2 + rot)))));
+					sin(degreestoradians((f->player->rot + FOV / 2 + rot)))));
 	}
 }
 

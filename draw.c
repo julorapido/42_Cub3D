@@ -6,13 +6,13 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 12:21:06 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:34:20 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1, int color)
+void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1)
 {
 	int	err;
 	int	e2;
@@ -20,13 +20,13 @@ void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1, int color)
 	int	dy;
 
 	dx = abs(x1 - x0);
-	f->sx = SNS(x0, x1);
+	f->sx = sns(x0, x1);
 	dy = -abs(y1 - y0);
-	f->sy = SNS(y0, y1);
+	f->sy = sns(y0, y1);
 	err = dx + dy;
 	while (1 && !(x0 == x1 && y0 == y1))
 	{
-		set_pixel_color(f->fps, x0, y0, color);
+		set_pixel_color(f->fps, x0, y0, f->color);
 		e2 = 2 * err;
 		if (e2 >= dy)
 		{
@@ -41,13 +41,13 @@ void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1, int color)
 	}
 }
 
-void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color)
+void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1)
 {
 	if (x1 < x0 || y1 < y0 || x0 > WIDTH || y0 > HEIGHT)
 		return ;
 	while (y0 < y1)
 	{
-		draw_line(f, x0, y0, x1, y0, color);
+		draw_line(f, x0, y0, x1, y0);
 		y0++;
 	}
 }
@@ -73,8 +73,8 @@ static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 				(*hitler) = f->aax;
 				break ;
 			}
-			f->px += (cos(degreesToRadians(((a - f->player->rot) - 60))));
-			f->py += (sin(degreesToRadians(((a - f->player->rot) - 60))));
+			f->px += (cos(degreestoradians(((a - f->player->rot) - 60))));
+			f->py += (sin(degreestoradians(((a - f->player->rot) - 60))));
 		}
 		f->aax++;
 		a += (float)(FOV) / (float)(WIDTH);
@@ -111,34 +111,29 @@ void	draw_fps_ray(int x, float ds, t_cub3d *f, t_image *texture)
 
 void	draw_sprite(t_image *i, float dst_sprite, t_cub3d *f, float sz)
 {
-	int		offset_y;
-	float	x;
-	float	y;
-	int		hitler;
-
-	y = 0;
+	f->yy_ = 0;
 	f->real_y = 0;
-	hitler = -1;
-	sprite_rays(f, f->sprite_y, f->sprite_x, &hitler);
-	while (y < i->height)
+	f->hitler = -1;
+	sprite_rays(f, f->sprite_y, f->sprite_x, &f->hitler);
+	while (f->yy_ < i->height)
 	{
-		x = 0;
+		f->xx_ = 0;
 		f->real_x = 0;
-		while (x < i->width)
+		while (f->xx_ < i->width)
 		{
-			offset_y = (i->height / (dst_sprite / 100));
-			if (get_texture_color(f, (int)(x), (int)(y), i) != -16777216)
+			if (get_texture_color(f, (int)(f->xx_),
+				(int)(f->yy_), i) != -16777216)
 			{
 				set_pixel_color(f->fps,
-					(hitler) + (f->real_x),
-					(HEIGHT / 2) + f->real_y - (offset_y),
-					get_texture_color(f, (int)(x), (int)(y), i)
+					(f->hitler) + (f->real_x),
+					(HEIGHT / 2) + f->real_y - (i->height / (dst_sprite / 100)),
+					get_texture_color(f, (int)(f->xx_), (int)(f->yy_), i)
 					);
 			}
 			f->real_x++;
-			x += (dst_sprite / 100) * sz;
+			f->xx_ += (dst_sprite / 100) * sz;
 		}
 		f->real_y++;
-		y += (dst_sprite / 100) * sz;
+		f->yy_ += (dst_sprite / 100) * sz;
 	}
 }
