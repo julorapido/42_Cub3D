@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:06:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 16:35:11 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:43:17 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ unsigned int	get_texture_color(t_cub3d *f, int x, int y, t_image *texture)
 {
 	t_image	*i;
 
+	(void)(f);
 	i = texture;
 	if (x < 0 || y < 0)
 		return (0);

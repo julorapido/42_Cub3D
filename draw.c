@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 17:09:32 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:21:06 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color)
 
 static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 {
-	int		aax;
 	float	a;
 
-	aax = 0;
+	f->aax = 0;
 	a = 0.001;
 	while (a < FOV && (*hitler) == -1)
 	{
@@ -65,26 +64,26 @@ static void	sprite_rays(t_cub3d *f, float sprite_y, float sprite_x, int *hitler)
 		f->py = (float)(f->player->y);
 		while (1)
 		{
-			if (f->px < 0.0 || (int)(f->px) > WIDTH || (int)(f->py) > HEIGHT || f->py < 0.0)
+			if (f->px < 0.0 || (int)(f->px) > WIDTH
+				|| (int)(f->py) > HEIGHT || f->py < 0.0)
 				break ;
 			if ((f->px < sprite_x + 2 && f->px > sprite_x - 2)
 				&& (f->py < sprite_y + 2 && f->py > sprite_y - 2))
 			{
-				(*hitler) = aax;
+				(*hitler) = f->aax;
 				break ;
 			}
 			f->px += (cos(degreesToRadians(((a - f->player->rot) - 60))));
 			f->py += (sin(degreesToRadians(((a - f->player->rot) - 60))));
 		}
-		aax++;
+		f->aax++;
 		a += (float)(FOV) / (float)(WIDTH);
 	}
 }
 
-void	draw_fps_ray(int x, float ds, t_cub3d *f, t_image *texture, float a)
+void	draw_fps_ray(int x, float ds, t_cub3d *f, t_image *texture)
 {
 	float	wall_height;
-	int		texture_y;
 	int		y;
 
 	wall_height = (float)(HEIGHT) / (float)ds;

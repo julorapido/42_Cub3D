@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/22 17:09:40 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:23:40 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,10 @@ struct s_cub3d
 	t_image		*sprites[2];
 	t_image		*gun[4];
 	t_image		*enemy[5];
+	char 		*sp[2];
+	char 		*wls[4];
+	char 		*gn[4];
+	char 		*enm[5];
 	int			gun_i;
 	// t_window	*minimap;
 	bool		z;
@@ -209,6 +213,7 @@ struct s_cub3d
 	float		pxx;
 	float		pyy;
 	float		sz;
+	int			aax;
 	int			sx;
 	int		y_y;
     float 		v_py;
@@ -233,6 +238,14 @@ double  terner(t_cub3d *f);
 void    strafe(t_cub3d *f, float rot);
 int		aa(int ll, int px, int py, t_cub3d *f);
 void    reset_entities(t_cub3d *f);
+int		load_enemy(t_cub3d *f);
+int		load_gun(t_cub3d *f);
+int		load_sprite(t_cub3d *f);
+void	load_sprite_files(t_cub3d *f);
+void	bullet_collisions(t_cub3d *f, int l);
+int		load_imgs(t_cub3d *f);
+int		init_things(t_cub3d *f, int argc, char **argv);
+void	shoot(t_cub3d *f);
 
 // map
 int		position_to_map_tiles(int px, int py, t_cub3d *f);
@@ -271,7 +284,7 @@ void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1, int color);
 // void	draw_rect(t_window *f, int x0, int y0, int x1, int y1, int color);
 void	draw_sprite(t_image *i, float dst_to_sprite, t_cub3d *f, float sz);
 //void	draw_fps_texturedray(t_window *w, int x, float dist_to_wall, int texture_x, t_cub3d *f, t_image *texture, float a);
-void	draw_fps_ray(int x, float dist_to_wall, t_cub3d *f, t_image *texture, float a);
+void	draw_fps_ray(int x, float dist_to_wall, t_cub3d *f, t_image *texture);
 int		fog_color(int color, float dist_to_wall);
 void	shoot(t_cub3d *f);
 

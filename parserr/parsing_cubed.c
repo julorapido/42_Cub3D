@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_cubed.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:59:22 by gautierchau       #+#    #+#             */
-/*   Updated: 2025/01/20 12:05:34 by gchauvot         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:18:49 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 int	open_cube_file(char *filename, t_mapdata *mapdata)
 {
