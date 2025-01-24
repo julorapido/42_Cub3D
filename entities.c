@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 12:18:51 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:27:44 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	init_entities(t_cub3d *f)
 		{
 			if ((f->map)->map_matrix[y][x] == '$')
 			{
-				f->game_entities[f->entities_n].x = (x * (WIDTH / (f->map)->width));
-				f->game_entities[f->entities_n].y =  (y * (HEIGHT / (f->map)->height));
+				f->game_entities[f->entities_n].x
+					= (x * (WIDTH / (f->map)->width));
+				f->game_entities[f->entities_n].y
+					= (y * (HEIGHT / (f->map)->height));
 				f->game_entities[f->entities_n].destroyed = false;
 				f->game_entities[f->entities_n].seen = false;
 				f->game_entities[f->entities_n].type = 1;

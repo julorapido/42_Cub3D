@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:38:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 12:08:29 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:33:38 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	throw_ray_loop(t_cub3d *f, float a)
 	int	k;
 
 	k = 0;
-	while (k < 100)
+	while (k < 130)
 	{
 		if (!(position_to_map_tiles(f->px, f->py, f) > 0
 				|| f->px > WIDTH || f->py > HEIGHT))

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:53 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:16:53 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:28:00 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	render_next_frame(t_cub3d *f)
 	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2, 45, 0xFFFFFF, a);
 	mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2 + 15,
 		45, 0xFFFFFF, "FPS");
-	if(f->door_interact)
+	if (f->door_interact)
 		mlx_string_put(f->fps->mlx, f->fps->win, WIDTH / 2,
 			HEIGHT / 2, 0xFFFFFF, "PRESS (F) to open door");
 	return (0);

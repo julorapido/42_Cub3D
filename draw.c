@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 12:03:18 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:29:46 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,9 @@ void	draw_sprite(t_image *i, float d, t_cub3d *f, float sz)
 			{
 				set_pixel_color(f->fps, (f->hitrel) + (f->real_x)
 					- ((i->width / (d / 100)) / s_func(f)),
-					(HEIGHT / 2) + f->real_y - ((i->height / (d / 100)) / s_func(f)),
-					get_texture_color(f, (int)(f->xx_), (int)(f->yy_), i)
-					);
+					(HEIGHT / 2) + f->real_y
+					- ((i->height / (d / 100)) / s_func(f)),
+					get_texture_color(f, (int)(f->xx_), (int)(f->yy_), i));
 			}
 			f->real_x++;
 			f->xx_ += (d / 100) * sz;

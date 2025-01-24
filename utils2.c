@@ -6,50 +6,25 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:19:29 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 15:57:48 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:24:52 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void open_na_noor(t_cub3d *f)
+static void	open_na_noor(t_cub3d *f)
 {
-	if(f->door_interact)
+	if (f->door_interact)
 	{
-	if ((f->map)->map_matrix[f->door_ix[0]][f->door_ix[1]]
-		== 'P')
-		(f->map)->map_matrix[f->door_ix[0]][f->door_ix[1]] = 'p'; 
-	else
-		(f->map)->map_matrix[f->door_ix[0]][f->door_ix[1]] = 'P'; 
+		if ((f->map)->map_matrix[f->door_ix[0]][f->door_ix[1]]
+			== 'P')
+			(f->map)->map_matrix[f->door_ix[0]][f->door_ix[1]] = 'p';
+		else
+			(f->map)->map_matrix[f->door_ix[0]][f->door_ix[1]] = 'P';
 	}
 	f->f = false;
 	f->door_interact = false;
 }
-
-// static void lenine2(t_cub3d *f)
-// {
-// 	int	Y;
-// 	int	X;
-
-// 	Y = (int)(
-// 		(f->player->y / (HEIGHT / (f->map)->height))
-// 	);
-// 	X = (int)(
-// 		(f->player->x / (WIDTH / (f->map)->width))
-// 	);
-// 	if (cadran(f->player->rot) == 'N'
-// 		&& f->map->map_matrix[Y - 1][X] == 'p')
-// 			f->map->map_matrix[Y - 1][X] = 'P';
-// 	else if (cadran(f->player->rot) == 'S'
-// 		&& f->map->map_matrix[Y + 1][X] == 'p')
-// 			f->map->map_matrix[Y + 1][X] = 'P';
-// 	else if (cadran(f->player->rot) == 'W'
-// 		&& f->map->map_matrix[Y][X - 1] == 'p')
-// 			f->map->map_matrix[Y][X - 1] = 'p';
-// 	else if (cadran(f->player->rot) == 'E'
-// 		&& f->map->map_matrix[Y][X + 1] == 'p')
-// 			f->map->map_matrix[Y][X + 1] = 'p';
-// }
 
 int	open_hook(int k_code, t_cub3d *f)
 {
@@ -65,7 +40,7 @@ int	open_hook(int k_code, t_cub3d *f)
 		f->f = true;
 		open_na_noor(f);
 	}
-	if(k_code == K_ESC)
+	if (k_code == K_ESC)
 		ft_close(f);
 	if (k_code == 115)
 		f->s = true;
@@ -101,7 +76,7 @@ int	aa(int ll, int px, int py, t_cub3d *f)
 	}
 	else
 	{
-		if(f->last_wall == '1')
+		if (f->last_wall == '1')
 			f->color = 0xFF000F;
 		else
 			f->color = 0xFFBBBF;

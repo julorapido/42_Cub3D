@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:16:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:18:14 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:22:40 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,35 +31,39 @@ int	clean_exit(t_cub3d *f)
 	free(f->map);
 	exit(0);
 }
-void giga_lenine(t_cub3d *f, float a)
+
+void	giga_lenine(t_cub3d *f, float a)
 {
-	float px;
-	float py;
+	float	px;
+	float	py;
 
 	px = (f->player)->x;
 	py = (f->player)->y;
 	if ((f->map)->map_matrix[(int)(
-		(py / (HEIGHT / (f->map)->height))
-	)][(int)(
+			(py / (HEIGHT / (f->map)->height))
+		)][(int)(
 		(px / (WIDTH / (f->map)->width))
 	)] == 'p')
-		return;
-	px += ((WIDTH / (f->map)->width) * 0.7) *(cos(degreestoradians(((a - f->player->rot) - 60))));
-	py += ((HEIGHT / (f->map)->height) * 0.7) *(sin(degreestoradians(((a - f->player->rot) - 60))));
+		return ;
+	px += ((WIDTH / (f->map)->width) * 0.7)
+		* (cos(degreestoradians(((a - f->player->rot) - 60))));
+	py += ((HEIGHT / (f->map)->height) * 0.7)
+		* (sin(degreestoradians(((a - f->player->rot) - 60))));
 	if ((f->map)->map_matrix[(int)(
-		(py / (HEIGHT / (f->map)->height))
-	)][(int)(
+			(py / (HEIGHT / (f->map)->height))
+		)][(int)(
 		(px / (WIDTH / (f->map)->width))
 	)] == 'p')
 	{
 		f->door_interact = true;
 	}
 }
-void staline(t_cub3d *f)
+
+void	staline(t_cub3d *f)
 {
 	if ((f->map)->map_matrix[(int)(
-		(f->py / (HEIGHT / (f->map)->height))
-	)][(int)(
+			(f->py / (HEIGHT / (f->map)->height))
+		)][(int)(
 		(f->px / (WIDTH / (f->map)->width))
 	)] == 'P' || (f->map)->map_matrix[(int)(
 		(f->py / (HEIGHT / (f->map)->height))
@@ -69,13 +73,12 @@ void staline(t_cub3d *f)
 	{
 		f->door_interact = true;
 		f->door_ix[0] = (int)(
-			(f->py / (HEIGHT / (f->map)->height))
-		);
+				(f->py / (HEIGHT / (f->map)->height))
+				);
 		f->door_ix[1] = (int)(
-			(f->px / (WIDTH / (f->map)->width))
-		);
+				(f->px / (WIDTH / (f->map)->width))
+				);
 	}
 	else
 		f->door_interact = false;
-
 }
