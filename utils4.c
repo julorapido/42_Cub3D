@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:10 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 14:05:10 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:45:38 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,15 @@ float	s_func(t_cub3d *f)
 		return (3);
 	else
 		return (1);
+}
+float f_rot(char c)
+{
+	if (c == 'W')
+		return (180 - (FOV/2));
+	if (c == 'E')
+		return (0 - (FOV/2));
+	if (c == 'N')
+		return (90  - (FOV/2));
+	if (c == 'S')
+		return (270 - (FOV/2));
 }

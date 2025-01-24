@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:53:29 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:55:45 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,29 @@
 
 void	init_entities(t_cub3d *f)
 {
+	int	x;
+	int	y;
+
+	y = 0;
 	f->game_entities = calloc(100, sizeof(t_entity));
-	f->game_entities[0].x = WIDTH / 2;
-	f->game_entities[0].y = HEIGHT / 2;
-	f->game_entities[0].destroyed = false;
-	f->game_entities[0].seen = false;
-	f->game_entities[0].type = 1;
-	f->game_entities[1].x = WIDTH / 4;
-	f->game_entities[1].y = HEIGHT / 3;
-	f->game_entities[1].destroyed = false;
-	f->game_entities[1].seen = false;
-	f->game_entities[1].type = 1;
-	f->entities_n = 2;
+	while (y < (f->map)->height)
+	{
+		x = 0;
+		while (x < (f->map)->width)
+		{
+			if ((f->map)->map_matrix[y][x] == '$')
+			{
+				f->game_entities[f->entities_n].x = (x * (WIDTH / (f->map)->width));
+				f->game_entities[f->entities_n].y =  (y * (HEIGHT / (f->map)->height));
+				f->game_entities[f->entities_n].destroyed = false;
+				f->game_entities[f->entities_n].seen = false;
+				f->game_entities[f->entities_n].type = 1;
+				f->entities_n++;
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 void	init_projectile(t_cub3d *f, int x, int y, float dir)

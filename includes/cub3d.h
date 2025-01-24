@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:52:40 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:43:09 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ int			load_imgs(t_cub3d *f);
 int			init_things(t_cub3d *f, int argc, char **argv);
 void		shoot(t_cub3d *f);
 float		s_func(t_cub3d *f);
+float		f_rot(char c);
 
 // map
 int			position_to_map_tiles(int px, int py, t_cub3d *f);

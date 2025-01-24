@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:54:47 by gchauvot          #+#    #+#             */
-/*   Updated: 2025/01/20 12:05:39 by gchauvot         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:47:41 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	map_filler(int column, char *line, t_mapdata *mapdata)
 		ft_strchr(line, '\n')[0] = 0;
 	while (line[i])
 	{
-		if (!ft_char_in_set(line[i], " 01NSEW\n"))
+		if (!ft_char_in_set(line[i], " 01NSEW$\n"))
 			return (printf("Invalid character in map design section\n"), 2);
 		else if (ft_char_in_set(line[i], "NSEW") && mapdata->start_pos[0] != -1)
 			return (printf("starter pos duplicate\n"), 2);

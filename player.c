@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:34:36 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:43:32 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,13 @@ void	init_player(t_cub3d *f)
 		j = 0;
 		while (j < (f->map)->height)
 		{
-			if ((f->map)->map_matrix[i][j] == 'E')
+			if (ft_char_in_set((f->map)->map_matrix[i][j], "EWNS"))
 			{
 				(f->player)->x = (j * (WIDTH / (f->map)->width))
 					+ (WIDTH / ((f->map)->width) / 2);
 				(f->player)->y = (i * (HEIGHT / (f->map)->height))
 					+ (HEIGHT / ((f->map)->height) / 2);
+				(f->player)->rot = f_rot((f->map)->map_matrix[i][j]);
 			}
 			j++;
 		}
