@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:17:48 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:03:55 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 /*  Window Settings	*/
 # define WIDTH 800
-# define HEIGHT 800
+# define HEIGHT 650
 # define FOV 60
 # define F_ 3
 # define TEXTURE_HEIGHT 64
@@ -229,6 +229,7 @@ struct s_cub3d
 	double		elapsedfixedtime;
 	double		fps_counter;
 	bool		key_pressed;
+	int			posdrw[4];
 };
 
 int			init_windows(t_cub3d *t);
@@ -285,8 +286,12 @@ void		draw_walls(t_cub3d *f);
 
 // draw
 void		set_pixel_color(t_window *w, long x, long y, unsigned int n);
+/*
 void		draw_line(t_cub3d *f, int x0, int y0, int x1, int y1);
 void		draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1);
+*/
+void		draw_line(t_cub3d *f);
+void		draw_rect(t_cub3d *f);
 void		draw_sprite(t_image *i, float dst_to_sprite, t_cub3d *f, float sz);
 void		draw_fps_ray(int x, float dd, t_cub3d *f, t_image *texture);
 int			fog_color(int color, float dist_to_wall);

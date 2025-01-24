@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:54:47 by gchauvot          #+#    #+#             */
-/*   Updated: 2025/01/24 14:47:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:02:49 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	map_filler(int column, char *line, t_mapdata *mapdata)
 int	cross_checker(t_mapdata *mapdata, int x, int y)
 {
 	if (mapdata->map_matrix[y][x] == '0'
-		|| ft_char_in_set(mapdata->map_matrix[y][x], "NSEW"))
+		|| ft_char_in_set(mapdata->map_matrix[y][x], "NSEW$"))
 	{
 		if (y == 0 || x == 0 || y == mapdata->height
 			|| x == mapdata->width)

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:10 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:23:19 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:08:07 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	init_things(t_cub3d *f, int argc, char **argv)
 {
 	f->map = cub_parser(argc, argv);
 	if (!f->map)
-		return (-1);
+		return (free(f), -1);
 	f->lasttime = clock();
 	f->player = malloc(sizeof(t_player));
 	f->last_mouse = -1;
@@ -66,6 +66,8 @@ void	shoot(t_cub3d *f)
 {
 	float	p;
 
+	if (f->shooting)
+		return ;
 	f->shooting = true;
 	f->gun_i = 0;
 	p = (f->player)->rot;

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:16:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:22:40 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:51:37 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	giga_lenine(t_cub3d *f, float a)
 		(px / (WIDTH / (f->map)->width))
 	)] == 'p')
 		return ;
-	px += ((WIDTH / (f->map)->width) * 0.7)
+	px += ((WIDTH / (f->map)->width) * 0.85)
 		* (cos(degreestoradians(((a - f->player->rot) - 60))));
-	py += ((HEIGHT / (f->map)->height) * 0.7)
+	py += ((HEIGHT / (f->map)->height) * 0.85)
 		* (sin(degreestoradians(((a - f->player->rot) - 60))));
 	if ((f->map)->map_matrix[(int)(
 			(py / (HEIGHT / (f->map)->height))
@@ -56,6 +56,12 @@ void	giga_lenine(t_cub3d *f, float a)
 	)] == 'p')
 	{
 		f->door_interact = true;
+			f->door_ix[0] = (int)(
+				(py / (HEIGHT / (f->map)->height))
+				);
+		f->door_ix[1] = (int)(
+				(px / (WIDTH / (f->map)->width))
+				);
 	}
 }
 

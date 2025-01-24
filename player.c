@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:25:34 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:53:02 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,9 @@ int	close_hook(int k_code, t_cub3d *f)
 		f->q = false;
 	if (k_code == 100)
 		f->d = false;
-	if (k_code == 113)
+	if (k_code == 113 || k_code == 65361)
 		f->a = false;
-	if (k_code == 101)
+	if (k_code == 101 || k_code == 65363)
 		f->e = false;
 	return (0);
 }

@@ -6,12 +6,12 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:29:46 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:09:30 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/*
 void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1)
 {
 	int	err;
@@ -41,6 +41,7 @@ void	draw_line(t_cub3d *f, int x0, int y0, int x1, int y1)
 	}
 }
 
+
 void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1)
 {
 	if (x1 < x0 || y1 < y0 || x0 > WIDTH || y0 > HEIGHT)
@@ -49,6 +50,59 @@ void	draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1)
 	{
 		draw_line(f, x0, y0, x1, y0);
 		y0++;
+	}
+}
+*/
+void	draw_line(t_cub3d *f)
+{
+	int	err;
+	int	e2;
+	int	dxy[2];
+	int	bank[2];
+
+	bank[0] = f->posdrw[0];
+	bank[1] = f->posdrw[1];
+	dxy[0] = abs(f->posdrw[2] - f->posdrw[0]);
+	f->sx = sns(f->posdrw[0], f->posdrw[2]);
+	dxy[1] = -abs(f->posdrw[3] - f->posdrw[1]);
+	f->sy = sns(f->posdrw[1], f->posdrw[3]);
+	err = dxy[0] + dxy[1];
+	while (1 && !(bank[0] == f->posdrw[2] && bank[1] == f->posdrw[3]))
+	{
+		set_pixel_color(f->fps, bank[0], bank[1], f->color);
+		e2 = 2 * err;
+		if (e2 >= dxy[1])
+			err += dxy[1];
+		if (e2 >= dxy[1])
+			bank[0] += f->sx;
+		if (e2 <= dxy[0])
+			err += dxy[0];
+		if (e2 <= dxy[0])
+			bank[1] += f->sy;
+	}
+}
+/*if (x1 < x0 || y1 < y0 || x0 > WIDTH || y0 > HEIGHT)
+	return ;
+while (y0 < y1)
+{
+	draw_line(f);
+	y0++;
+}
+*/
+
+void	draw_rect(t_cub3d *f)
+{
+	int	bank;
+
+	bank = f->posdrw[3];
+	if (f->posdrw[2] < f->posdrw[0] || f->posdrw[3] < f->posdrw[1]
+		|| f->posdrw[0] > WIDTH || f->posdrw[1] > HEIGHT)
+		return ;
+	while (f->posdrw[1] < bank)
+	{
+		f->posdrw[3] = f->posdrw[1];
+		draw_line(f);
+		f->posdrw[1]++;
 	}
 }
 
@@ -86,16 +140,14 @@ void	draw_fps_ray(int x, float ds, t_cub3d *f, t_image *texture)
 	float	wall_height;
 	int		y;
 
-	wall_height = (float)(HEIGHT) / (float)ds;
-	wall_height *= (float)(HEIGHT * (f->map->height * 0.002));
+	wall_height = 17000 / (float)ds;
 	y = 0;
 	while (y < HEIGHT)
 	{
 		if (y <= (HEIGHT / 2) - (wall_height / (2)))
-			set_pixel_color(f->fps, x, y, 0xDDDDDD);
+			set_pixel_color(f->fps, x, y, f->map->ceiling);
 		else if (y >= (HEIGHT / 2) + (wall_height / (2)))
-			set_pixel_color(f->fps, x, y,
-				get_texture_color(f, 0, 0, f->wall_textures[0]));
+			set_pixel_color(f->fps, x, y, f->map->floor);
 		else
 		{
 			f->y_y = y - ((HEIGHT / 2) - (wall_height / 2));

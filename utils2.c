@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:19:29 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:24:52 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:01:49 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ static void	open_na_noor(t_cub3d *f)
 int	open_hook(int k_code, t_cub3d *f)
 {
 	if (f->k_code == -1)
-	{
 		return (0);
-	}
-	printf("k_code: %d \n", k_code);
 	if (k_code == 119)
 		f->z = true;
+	if (k_code == 32)
+		shoot(f);
 	if (k_code == 102)
 	{
 		f->f = true;
@@ -48,9 +47,9 @@ int	open_hook(int k_code, t_cub3d *f)
 		f->q = true;
 	if (k_code == 100)
 		f->d = true;
-	if (k_code == 113)
+	if (k_code == 113 || k_code == 65361)
 		f->a = true;
-	if (k_code == 101)
+	if (k_code == 101 || k_code == 65363)
 		f->e = true;
 	return (0);
 }
@@ -63,7 +62,7 @@ int	hook_mousedown(int k_code, long x, long y, t_cub3d *f)
 		shoot(f);
 	return (0);
 }
-
+/*
 int	aa(int ll, int px, int py, t_cub3d *f)
 {
 	if (ll != -1)
@@ -84,6 +83,30 @@ int	aa(int ll, int px, int py, t_cub3d *f)
 			f->player->x / MINIMAP_RATIO, f->player->y / MINIMAP_RATIO,
 			px / MINIMAP_RATIO, py / MINIMAP_RATIO
 			);
+	}
+	return (0);
+}
+*/
+
+int	aa(int ll, int px, int py, t_cub3d *f)
+{
+	if (ll != -1)
+	{
+		f->color = 0xFFF000;
+		f->posdrw[0] = f->player->x / MINIMAP_RATIO;
+		f->posdrw[1] = f->player->y / MINIMAP_RATIO;
+		f->posdrw[2] = px / MINIMAP_RATIO;
+		f->posdrw[3] = py / MINIMAP_RATIO;
+		draw_line(f);
+	}
+	else
+	{
+		f->color = 0xFF00FF;
+		f->posdrw[0] = f->player->x / MINIMAP_RATIO;
+		f->posdrw[1] = f->player->y / MINIMAP_RATIO;
+		f->posdrw[2] = px / MINIMAP_RATIO;
+		f->posdrw[3] = py / MINIMAP_RATIO;
+		draw_line(f);
 	}
 	return (0);
 }
