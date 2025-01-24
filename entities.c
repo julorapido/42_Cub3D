@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:41:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 11:55:45 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:18:51 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	check_entities(t_cub3d *f)
 			wawer(f, px, py);
 			aa(f->ll, px, py, f);
 		}
-		a += ((float)(FOV) / (float)(WIDTH)) * 10;
+		a += ((float)(FOV) / (float)(WIDTH)) * 15;
 	}
 }
 

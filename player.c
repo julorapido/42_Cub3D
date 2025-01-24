@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 11:43:32 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:44 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 static void	aff(float px, float py, t_cub3d *f)
 {
-	if (f->Ast_frm_player > f->Bst_frm_player2)
+	if ((f->map)->map_matrix[(int)(
+			(py / (HEIGHT / (f->map)->height))
+		)][(int)(
+			(px / (WIDTH / (f->map)->width))
+		)] == 'P')
+		f->i = f->wall_textures[4];
+	else if (f->Ast_frm_player > f->Bst_frm_player2)
 	{
 		if (py > f->player->y)
-			f->texture_x = TEXTURE_WIDTH - f->texture_x;
+				f->texture_x = TEXTURE_WIDTH - f->texture_x;
 		if (px > f->player->x)
-		{
 			f->i = f->wall_textures[EAST];
-		}
 		else
 			f->i = f->wall_textures[WEST];
 	}
@@ -30,9 +34,7 @@ static void	aff(float px, float py, t_cub3d *f)
 		if (px > f->player->x)
 			f->texture_y = TEXTURE_HEIGHT - f->texture_y;
 		if (py > f->player->y)
-		{
 			f->i = f->wall_textures[SUD];
-		}
 		else
 			f->i = f->wall_textures[NORD];
 	}
@@ -50,6 +52,15 @@ void	raycasting(t_cub3d *f)
 	{
 		init_ray_loop(f);
 		throw_ray_loop(f, a);
+		if ((a >= (FOV / 2) - 4 && a <= (FOV / 2) + 4))
+		{
+			if(f->dst_to_wall < 100)
+				staline(f);
+			else
+				f->door_interact = false;
+			giga_lenine(f, a);
+		}
+		//lenine(f);
 		f->texture_x = (TEXTURE_WIDTH) * ((int)(f->px)
 				% (WIDTH / f->map->width)) / (WIDTH / f->map->width);
 		f->texture_y = (TEXTURE_HEIGHT) * ((int)(f->py)
@@ -109,6 +120,7 @@ int	close_hook(int k_code, t_cub3d *f)
 		f->a = false;
 	if (k_code == 101)
 		f->e = false;
+	
 	return (0);
 }
 

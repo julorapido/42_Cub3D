@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:38:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:34:59 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:08:29 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	throw_ray_loop(t_cub3d *f, float a)
 	int	k;
 
 	k = 0;
-	while (k < 200)
+	while (k < 100)
 	{
 		if (!(position_to_map_tiles(f->px, f->py, f) > 0
 				|| f->px > WIDTH || f->py > HEIGHT))
@@ -87,5 +87,6 @@ int	mouse(int x, int y, t_cub3d *f)
 	{
 		(f->player)->rot += 1;
 	}
+	f->last_mouse = x;
 	return (0);
 }

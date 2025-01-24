@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:10 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 11:45:38 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:06:45 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	load_imgs(t_cub3d *f)
 
 	i = 0;
 	load_sprite_files(f);
-	while (i < 4)
+	while (i < 5)
 	{
-		f->wall_textures[i] = calloc(1, sizeof(t_image));
+		printf("i: %d, f->wls[i]:%s \n", i, f->wls[i]);
+		f->wall_textures[i] = ft_calloc(1, sizeof(t_image));
 		if (!f->wall_textures[i])
 			return (-1);
 		f->wall_textures[i]->img = mlx_xpm_file_to_image(f->fps->mlx,
@@ -42,10 +43,9 @@ int	load_imgs(t_cub3d *f)
 
 int	init_things(t_cub3d *f, int argc, char **argv)
 {
-	f->map = malloc(sizeof(t_mapdata));
-	if (!f->map)
-		return (1);
 	f->map = cub_parser(argc, argv);
+	if (!f->map)
+		return (-1);
 	f->lasttime = clock();
 	f->player = malloc(sizeof(t_player));
 	f->last_mouse = -1;

@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:56:23 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 14:06:04 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:03:18 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	draw_fps_ray(int x, float ds, t_cub3d *f, t_image *texture)
 	int		y;
 
 	wall_height = (float)(HEIGHT) / (float)ds;
-	wall_height *= (float)(HEIGHT * (f->map->height * 0.0015));
+	wall_height *= (float)(HEIGHT * (f->map->height * 0.002));
 	y = 0;
 	while (y < HEIGHT)
 	{

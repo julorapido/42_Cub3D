@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 11:43:09 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:17:48 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@
 # include <dirent.h>
 
 /*  Window Settings	*/
-# define WIDTH 700
-# define HEIGHT 700
+# define WIDTH 800
+# define HEIGHT 800
 # define FOV 60
 # define F_ 3
 # define TEXTURE_HEIGHT 64
 # define TEXTURE_WIDTH 64
-# define MINIMAP_RATIO 4
+# define MINIMAP_RATIO 3
 
 # define NORD 0
 # define SUD 1
@@ -166,12 +166,12 @@ int			fl_cl_filler(char **line_split, int *color);
 
 struct s_cub3d
 {
-	t_image		*wall_textures[4];
+	t_image		*wall_textures[5];
 	t_image		*sprites[2];
 	t_image		*gun[4];
 	t_image		*enemy[5];
 	char		*sp[2];
-	char		*wls[4];
+	char		*wls[5];
 	char		*gn[4];
 	char		*enm[5];
 	int			gun_i;
@@ -181,6 +181,9 @@ struct s_cub3d
 	bool		d;
 	bool		a;
 	bool		e;
+	bool		f;
+	bool		door_interact;
+	int			door_ix[2];
 	t_window	*fps;
 	int			last_mouse;
 	t_mapdata	*map;
@@ -214,6 +217,7 @@ struct s_cub3d
 	int			aax;
 	int			sx;
 	int			s_type;
+	char		last_wall;
 	int			y_y;
 	float		v_py;
 	float		v_px;
@@ -228,6 +232,9 @@ struct s_cub3d
 };
 
 int			init_windows(t_cub3d *t);
+int			ft_close(void *p);
+void		giga_lenine(t_cub3d *f, float a);
+void		staline(t_cub3d *f);
 
 // macro func
 float		min(float a, float b);

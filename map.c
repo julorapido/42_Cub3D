@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:17:45 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:33:39 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:16:38 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@ int	position_to_map_tiles(int px, int py, t_cub3d *f)
 	if ((int)(px / (WIDTH / (f->map)->width)) >= (f->map)->width
 		|| (int)((py / (HEIGHT / (f->map)->height))) >= (f->map)->height)
 		return (1);
-	if ((f->map)->map_matrix[(int)(
+	if (ft_char_in_set((f->map)->map_matrix[(int)(
 			(py / (HEIGHT / (f->map)->height))
 		)][(int)(
 			(px / (WIDTH / (f->map)->width))
-		)] == '1')
+		)], "1P"))
 	{
+		f->last_wall = (f->map)->map_matrix[(int)(
+			(py / (HEIGHT / (f->map)->height))
+		)][(int)(
+			(px / (WIDTH / (f->map)->width))
+		)];
 		return (1);
 	}
 	else

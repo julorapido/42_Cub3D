@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:06:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/23 12:29:48 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:06:23 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@ void	draw_walls(t_cub3d *f)
 			if ((f->map)->map_matrix[y][x] == '1')
 			{
 				f->color = 0XFFFFFF;
+				draw_rect(f,
+					(x * (WIDTH / (f->map)->width)) / MINIMAP_RATIO,
+					(y * (HEIGHT / (f->map)->height)) / MINIMAP_RATIO,
+					(((x + 1) * (WIDTH / (f->map)->width))) / MINIMAP_RATIO,
+					(((y + 1) * (HEIGHT / (f->map)->height))) / MINIMAP_RATIO
+					);
+			}
+			if ((f->map)->map_matrix[y][x] == 'P')
+			{
+				f->color = 0XDDDDDD;
+				draw_rect(f,
+					(x * (WIDTH / (f->map)->width)) / MINIMAP_RATIO,
+					(y * (HEIGHT / (f->map)->height)) / MINIMAP_RATIO,
+					(((x + 1) * (WIDTH / (f->map)->width))) / MINIMAP_RATIO,
+					(((y + 1) * (HEIGHT / (f->map)->height))) / MINIMAP_RATIO
+					);
+			}
+			if ((f->map)->map_matrix[y][x] == 'p')
+			{
+				f->color = 0XAAAAAA;
 				draw_rect(f,
 					(x * (WIDTH / (f->map)->width)) / MINIMAP_RATIO,
 					(y * (HEIGHT / (f->map)->height)) / MINIMAP_RATIO,
