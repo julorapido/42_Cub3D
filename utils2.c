@@ -88,29 +88,6 @@ int	aa(int ll, int px, int py, t_cub3d *f)
 }
 */
 
-int	aa(int ll, int px, int py, t_cub3d *f)
-{
-	if (ll != -1)
-	{
-		f->color = 0xFFF000;
-		f->posdrw[0] = f->player->x / MINIMAP_RATIO;
-		f->posdrw[1] = f->player->y / MINIMAP_RATIO;
-		f->posdrw[2] = px / MINIMAP_RATIO;
-		f->posdrw[3] = py / MINIMAP_RATIO;
-		draw_line(f);
-	}
-	else
-	{
-		f->color = 0xFF00FF;
-		f->posdrw[0] = f->player->x / MINIMAP_RATIO;
-		f->posdrw[1] = f->player->y / MINIMAP_RATIO;
-		f->posdrw[2] = px / MINIMAP_RATIO;
-		f->posdrw[3] = py / MINIMAP_RATIO;
-		draw_line(f);
-	}
-	return (0);
-}
-
 int	keyboard(t_cub3d *f)
 {
 	if (f->k_code == -1)

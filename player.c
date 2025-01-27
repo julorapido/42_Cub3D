@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:55:57 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 17:53:02 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:55:09 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	aff(float px, float py, t_cub3d *f)
 			(px / (WIDTH / (f->map)->width))
 		)] == 'P')
 		f->i = f->wall_textures[4];
-	else if (f->Ast_frm_player > f->Bst_frm_player2)
+	else if (f->ast_frm_player > f->bst_frm_player)
 	{
 		if (py > f->player->y)
 				f->texture_x = TEXTURE_WIDTH - f->texture_x;
@@ -40,6 +40,15 @@ static void	aff(float px, float py, t_cub3d *f)
 	}
 }
 
+void	raycastingnorm(t_cub3d *f, float a)
+{
+	if (f->dst_to_wall < 100)
+		staline(f);
+	else
+		f->door_interact = false;
+	giga_lenine(f, a);
+}
+
 void	raycasting(t_cub3d *f)
 {
 	int		x;
@@ -53,13 +62,7 @@ void	raycasting(t_cub3d *f)
 		init_ray_loop(f);
 		throw_ray_loop(f, a);
 		if ((a >= (FOV / 2) - 4 && a <= (FOV / 2) + 4))
-		{
-			if (f->dst_to_wall < 100)
-				staline(f);
-			else
-				f->door_interact = false;
-			giga_lenine(f, a);
-		}
+			raycastingnorm(f, a);
 		f->texture_x = (TEXTURE_WIDTH) * ((int)(f->px)
 				% (WIDTH / f->map->width)) / (WIDTH / f->map->width);
 		f->texture_y = (TEXTURE_HEIGHT) * ((int)(f->py)
@@ -86,7 +89,7 @@ void	render_gun(t_cub3d *f)
 		while (x < 128 * F_)
 		{
 			if (get_texture_color(f, (x / F_), (128 - (y / F_)),
-					f->gun[(f->gun_i)]) != -16777216)
+					f->gun[(f->gun_i)]) != (unsigned int)-16777216)
 			{
 				set_pixel_color(f->fps,
 					(WIDTH / 2) - ((128 / 2) * F_) + x,
@@ -99,27 +102,6 @@ void	render_gun(t_cub3d *f)
 		}
 		y++;
 	}
-}
-
-int	close_hook(int k_code, t_cub3d *f)
-{
-	if (f->k_code == -1)
-	{
-		return (0);
-	}
-	if (k_code == 119)
-		f->z = false;
-	if (k_code == 115)
-		f->s = false;
-	if (k_code == 97)
-		f->q = false;
-	if (k_code == 100)
-		f->d = false;
-	if (k_code == 113 || k_code == 65361)
-		f->a = false;
-	if (k_code == 101 || k_code == 65363)
-		f->e = false;
-	return (0);
 }
 
 void	init_player(t_cub3d *f)

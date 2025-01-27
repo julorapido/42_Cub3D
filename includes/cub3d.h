@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:59:06 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 18:03:55 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:24:07 by gchauvot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 // #define degreesToRadians(a) (a * M_PI / 180.0)
 // #define radiansToDegrees(a) (a * 180.0 / M_PI)
 // #define MIN(a, b) ((a) < (b) ? (a) : (b))
-// #define ENTITY_SZ(a) ((a == 1) ? (0.4) : (1.2)) 
+// #define ENTITY_SZ(a) ((a == 1) ? (0.4) : (1.2))
 
 typedef struct s_cub3d	t_cub3d;
 
@@ -140,29 +140,29 @@ typedef struct s_mapdata
 }	t_mapdata;
 
 /*GNL*/
-int			ft_strlen_alt(char *dst, char *src, int siz, int alt);
-char		*get_next_line(int fd);
+int				ft_strlen_alt(char *dst, char *src, int siz, int alt);
+char			*get_next_line(int fd);
 
 /*PARSING CUBED #GENERAL*/
-int			open_cube_file(char *filename, t_mapdata *mapdata);
-int			reader(int file_fd, t_mapdata *mapdata);
-int			freemapdata(t_mapdata *mapdatsnsa);
-t_mapdata	*cub_parser(int argc, char **argv);
+int				open_cube_file(char *filename, t_mapdata *mapdata);
+int				reader(int file_fd, t_mapdata *mapdata);
+int				freemapdata(t_mapdata *mapdatsnsa);
+t_mapdata		*cub_parser(int argc, char **argv);
 
 /*TEXTURES_PARSER*/
-int			info_parser(char *line, t_mapdata *mapdata);
-int			datamapcheck(t_mapdata *mapdata);
-int			texture_files_parser(char **line_split, t_mapdata *mapdata);
+int				info_parser(char *line, t_mapdata *mapdata);
+int				datamapcheck(t_mapdata *mapdata);
+int				texture_files_parser(char **line_split, t_mapdata *mapdata);
 
 /*MAP PARSER*/
-int			map_validity_checker(t_mapdata *mapdata);
-int			datamapcheck2(t_mapdata *mapdata, bool *mapbool, char *line);
-int			cross_checker(t_mapdata *mapdata, int x, int y);
-int			map_filler(int column, char *line, t_mapdata *mapdata);
+int				map_validity_checker(t_mapdata *mapdata);
+int				datamapcheck2(t_mapdata *mapdata, bool *mapbool, char *line);
+int				cross_checker(t_mapdata *mapdata, int x, int y);
+int				map_filler(int column, char *line, t_mapdata *mapdata);
 
 /*FLOOR CEILING*/
-int			fl_cl_parser(char *line, t_mapdata *mapdata);
-int			fl_cl_filler(char **line_split, int *color);
+int				fl_cl_parser(char *line, t_mapdata *mapdata);
+int				fl_cl_filler(char **line_split, int *color);
 
 struct s_cub3d
 {
@@ -195,8 +195,8 @@ struct s_cub3d
 	clock_t		lastfixedtime;
 	int			texture_x;
 	int			texture_y;
-	double		Ast_frm_player;
-	double		Bst_frm_player2;
+	double		ast_frm_player;
+	double		bst_frm_player;
 	float		beta;
 	double		dst_to_wall;
 	float		px;
@@ -232,77 +232,79 @@ struct s_cub3d
 	int			posdrw[4];
 };
 
-int			init_windows(t_cub3d *t);
-int			ft_close(void *p);
-void		giga_lenine(t_cub3d *f, float a);
-void		staline(t_cub3d *f);
+int				init_windows(t_cub3d *t);
+int				ft_close(void *p);
+void			giga_lenine(t_cub3d *f, float a);
+void			staline(t_cub3d *f);
+int				clean_exit(t_cub3d *f);
 
 // macro func
-float		min(float a, float b);
-float		degreestoradians(float a);
-float		radiantodegrees(float a);
-float		entity_sz(int a);
-int			sns(int a, int b);
+float			min(float a, float b);
+float			degreestoradians(float a);
+float			radiantodegrees(float a);
+float			entity_sz(int a);
+int				sns(int a, int b);
 
 // UTILS
-void		init_ray_loop(t_cub3d *f);
-void		throw_ray_loop(t_cub3d *f, float a);
-double		terner(t_cub3d *f);
-void		strafe(t_cub3d *f, float rot);
-int			aa(int ll, int px, int py, t_cub3d *f);
-void		reset_entities(t_cub3d *f);
-int			load_enemy(t_cub3d *f);
-int			load_gun(t_cub3d *f);
-int			load_sprite(t_cub3d *f);
-void		load_sprite_files(t_cub3d *f);
-void		bullet_collisions(t_cub3d *f, int l);
-int			load_imgs(t_cub3d *f);
-int			init_things(t_cub3d *f, int argc, char **argv);
-void		shoot(t_cub3d *f);
-float		s_func(t_cub3d *f);
-float		f_rot(char c);
+void			init_ray_loop(t_cub3d *f);
+void			throw_ray_loop(t_cub3d *f, float a);
+double			terner(t_cub3d *f);
+void			strafe(t_cub3d *f, float rot);
+int				aa(int ll, int px, int py, t_cub3d *f);
+void			reset_entities(t_cub3d *f);
+int				load_enemy(t_cub3d *f);
+int				load_gun(t_cub3d *f);
+int				load_sprite(t_cub3d *f);
+void			load_sprite_files(t_cub3d *f);
+void			bullet_collisions(t_cub3d *f, int l);
+int				load_imgs(t_cub3d *f);
+int				init_things(t_cub3d *f, int argc, char **argv);
+void			shoot(t_cub3d *f);
+float			s_func(t_cub3d *f);
+float			f_rot(char c);
 
 // map
-int			position_to_map_tiles(int px, int py, t_cub3d *f);
-int			position_to_next_tile_line(t_cub3d *f, int x, int y, float a);
-void		nxt_vert_inter(float alpha, float *p_x, float *p_y, t_cub3d *f);
-void		nxt_horz_inter(float alpha, float *p_x, float *p_y, t_cub3d *f);
+int				position_to_map_tiles(int px, int py, t_cub3d *f);
+int				position_to_next_tile_line(t_cub3d *f, int x, int y, float a);
+void			nxt_vert_inter(float alpha, float *p_x, float *p_y, t_cub3d *f);
+void			nxt_horz_inter(float alpha, float *p_x, float *p_y, t_cub3d *f);
 
 // player
-void		raycasting(t_cub3d *f);
-void		init_player(t_cub3d *f);
-void		render_gun(t_cub3d *f);
+void			raycasting(t_cub3d *f);
+void			init_player(t_cub3d *f);
+void			render_gun(t_cub3d *f);
 
 // entities
-void		check_entities(t_cub3d *f);
-void		init_entities(t_cub3d *f);
-void		init_projectile(t_cub3d *f, int x, int y, float dir);
-void		render_entities(t_cub3d *f);
+void			check_entities(t_cub3d *f);
+void			init_entities(t_cub3d *f);
+void			init_projectile(t_cub3d *f, int x, int y, float dir);
+void			render_entities(t_cub3d *f);
 
 // minimap
-void		render(t_cub3d *f);
-void		draw_entities(t_cub3d *f);
-void		draw_walls(t_cub3d *f);
+void			render(t_cub3d *f);
+void			draw_entities(t_cub3d *f);
+void			draw_walls(t_cub3d *f);
 
 // draw
-void		set_pixel_color(t_window *w, long x, long y, unsigned int n);
+void			set_pixel_color(t_window *w, long x, long y, unsigned int n);
 /*
 void		draw_line(t_cub3d *f, int x0, int y0, int x1, int y1);
 void		draw_rect(t_cub3d *f, int x0, int y0, int x1, int y1);
 */
-void		draw_line(t_cub3d *f);
-void		draw_rect(t_cub3d *f);
-void		draw_sprite(t_image *i, float dst_to_sprite, t_cub3d *f, float sz);
-void		draw_fps_ray(int x, float dd, t_cub3d *f, t_image *texture);
-int			fog_color(int color, float dist_to_wall);
-void		shoot(t_cub3d *f);
+void			draw_line(t_cub3d *f);
+void			draw_rect(t_cub3d *f);
+void			draw_sprite(t_image *i, float dst_to_sprite,
+					t_cub3d *f, float sz);
+void			draw_fps_ray(int x, float dd, t_cub3d *f, t_image *texture);
+int				fog_color(int color, float dist_to_wall);
+void			shoot(t_cub3d *f);
 
 // keyboard
-int			open_hook(int k_code, t_cub3d *f);
-int			close_hook(int k_code, t_cub3d *f);
-int			keyboard(t_cub3d *f);
-int			mouse(int x, int y, t_cub3d *f);
-int			hook_mousedown(int k_code, long x, long y, t_cub3d *f);
+int				open_hook(int k_code, t_cub3d *f);
+int				close_hook(int k_code, t_cub3d *f);
+int				keyboard(t_cub3d *f);
+int				mouse(int x, int y, t_cub3d *f);
+int				hook_mousedown(int k_code, long x, long y, t_cub3d *f);
 unsigned int	get_texture_color(t_cub3d *f, int x, int y, t_image *t);
 
 #endif

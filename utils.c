@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:38:05 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 17:51:37 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:20:23 by gchauvot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,25 @@ void	throw_ray_loop(t_cub3d *f, float a)
 		if (!(position_to_map_tiles(f->v_px, f->v_py, f) > 0
 				|| f->v_px > WIDTH || f->v_py > HEIGHT))
 			nxt_vert_inter(a + f->player->rot, &f->v_px, &f->v_py, f);
-		f->Ast_frm_player = (sqrt(pow((f->px) - (float)(f->player->x), 2)
+		f->ast_frm_player = (sqrt(pow((f->px) - (float)(f->player->x), 2)
 					+ pow((f->py) - (float)(f->player->y), 2)));
-		f->Bst_frm_player2 = (sqrt(pow(f->v_px - (float)f->player->x, 2)
+		f->bst_frm_player = (sqrt(pow(f->v_px - (float)f->player->x, 2)
 					+ pow((f->v_py) - (float)(f->player->y), 2)));
 		k++;
 	}
-	if (f->Ast_frm_player > f->Bst_frm_player2)
+	if (f->ast_frm_player > f->bst_frm_player)
 	{
-		f->dst_to_wall = f->Bst_frm_player2;
+		f->dst_to_wall = f->bst_frm_player;
 		f->px = f->v_px;
 		f->py = f->v_py;
 	}
 	else
-		f->dst_to_wall = f->Ast_frm_player;
+		f->dst_to_wall = f->ast_frm_player;
 }
 
 double	terner(t_cub3d *f)
 {
-	if (f->Ast_frm_player > f->Bst_frm_player2)
+	if (f->ast_frm_player > f->bst_frm_player)
 		return (f->texture_y);
 	else
 		return (f->texture_x);

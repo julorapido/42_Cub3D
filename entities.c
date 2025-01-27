@@ -106,7 +106,7 @@ void	check_entities(t_cub3d *f)
 			wawer(f, px, py);
 			aa(f->ll, px, py, f);
 		}
-		a += ((float)(FOV) / (float)(WIDTH)) * 50;
+		a += ((float)(FOV) / (float)(WIDTH)) * 20;
 	}
 }
 

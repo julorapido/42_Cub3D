@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:18:06 by julessainth       #+#    #+#             */
-/*   Updated: 2024/12/09 15:51:41 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:04:26 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	if(!str)
+	if (!str)
 		return (0);
 	while (str[i] != '\0')
 		i++;

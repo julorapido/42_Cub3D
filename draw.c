@@ -174,7 +174,7 @@ void	draw_sprite(t_image *i, float d, t_cub3d *f, float sz)
 		while (f->xx_ < i->width)
 		{
 			if (get_texture_color(f, (int)(f->xx_),
-				(int)(f->yy_), i) != -16777216)
+				(f->yy_), i) != (unsigned int)(-16777216))
 			{
 				set_pixel_color(f->fps, (f->hitrel) + (f->real_x)
 					- ((i->width / (d / 100)) / s_func(f)),

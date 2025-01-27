@@ -6,7 +6,7 @@
 /*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:20:10 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 18:08:07 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:57:23 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ float	f_rot(char c)
 		return (90 - (FOV / 2));
 	if (c == 'S')
 		return (270 - (FOV / 2));
+	return (0);
 }

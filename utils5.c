@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaintho <jsaintho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:16:43 by jsaintho          #+#    #+#             */
-/*   Updated: 2025/01/24 16:51:37 by jsaintho         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:16:31 by gchauvot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,8 @@ void	giga_lenine(t_cub3d *f, float a)
 	)] == 'p')
 	{
 		f->door_interact = true;
-			f->door_ix[0] = (int)(
-				(py / (HEIGHT / (f->map)->height))
-				);
-		f->door_ix[1] = (int)(
-				(px / (WIDTH / (f->map)->width))
-				);
+		f->door_ix[0] = (int)((py / (HEIGHT / (f->map)->height)));
+		f->door_ix[1] = (int)((px / (WIDTH / (f->map)->width)));
 	}
 }
 
@@ -87,4 +83,48 @@ void	staline(t_cub3d *f)
 	}
 	else
 		f->door_interact = false;
+}
+
+int	aa(int ll, int px, int py, t_cub3d *f)
+{
+	if (ll != -1)
+	{
+		f->color = 0xFFF000;
+		f->posdrw[0] = f->player->x / MINIMAP_RATIO;
+		f->posdrw[1] = f->player->y / MINIMAP_RATIO;
+		f->posdrw[2] = px / MINIMAP_RATIO;
+		f->posdrw[3] = py / MINIMAP_RATIO;
+		draw_line(f);
+	}
+	else
+	{
+		f->color = 0xFF00FF;
+		f->posdrw[0] = f->player->x / MINIMAP_RATIO;
+		f->posdrw[1] = f->player->y / MINIMAP_RATIO;
+		f->posdrw[2] = px / MINIMAP_RATIO;
+		f->posdrw[3] = py / MINIMAP_RATIO;
+		draw_line(f);
+	}
+	return (0);
+}
+
+int	close_hook(int k_code, t_cub3d *f)
+{
+	if (f->k_code == -1)
+	{
+		return (0);
+	}
+	if (k_code == 119)
+		f->z = false;
+	if (k_code == 115)
+		f->s = false;
+	if (k_code == 97)
+		f->q = false;
+	if (k_code == 100)
+		f->d = false;
+	if (k_code == 113 || k_code == 65361)
+		f->a = false;
+	if (k_code == 101 || k_code == 65363)
+		f->e = false;
+	return (0);
 }
